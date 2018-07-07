@@ -1,0 +1,399 @@
+---
+title: "Relatório final"
+author: "Luiza, Oswaldo e Pedro"
+date: "07/07/2018"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+
+#Introdução e contextualização
+##Ciências Médicas
+###História
+
+O curso de Medicina da UnB foi criado em 1966, então parte da Faculdade de Ciências Médicas. Com a
+criação de outros cursos na área da saúde, criou-se a Faculdade de Ciências da Saúde, englobando todos os
+cursos de saúde, e a Faculdade de Ciências Médicas deixou de existir. Na década de 90, porém, por um desejo
+de maior autonomia dos professores, servidores e alunos, passou-se a se discutir a criação da Faculdade de
+Medicina (FM), que acabou sendo criada em 1999.
+
+Já existiam cursos de pós-graduação ligados à Medicina sob a Faculdade de Ciências da Saúde, os de Medicina
+Tropical, Patologia Molecular e Clínica Médica, ainda assim, faltava um curso, de mestrado e doutorado,
+que pudesse atender à todos docentes e alunos da FM. Assim, a Faculdade de Medicina começou a propor a
+criação de um novo curso.
+
+Esse curso deveria ser abrangente, com linhas de pesquisa que acolhessem os professores de todas as áreas
+da FM e que pudesse ser atendido tanto por alunos da FM quanto por alunos de outras áreas, valorizando
+o trabalho multidisciplinar. Além disso, o curso deveria atender ao requisitos mínimos para a criação de um
+curso de mestrado e doutorado pela CAPES.
+
+Assim, em 2002, foi criado o Curso de Pós-graduação em Ciências Médicas, com níveis de Mestrado e
+Doutorado, de acordo com as propostas apresentadas. Após um primeiro semestre no qual foram só feitos
+ajustes operacionais e um processo seletivo, o curso passou a receber alunos no segundo semestre de 2002.
+Desde então o curso tem crescido significativamente, se tornando um polo de formação de mestres e doutores
+no Distrito Federal e na região Centro-Oeste.
+
+###Informações
+
+O Programa de Pós-Graduação em Ciências Médicas da UnB é parte da
+Faculdade de Medicina da UnB e oferece cursos de mestrado e doutorado. O
+Curso de Mestrado possui duração mínima de dois e duração máxima de
+quatro semestres letivos, enquanto o Curso de Doutorado possui duração
+mínima de quatro e duração máxima de oito semestres letivos.
+
+O curso possui dois objetivos principais produzir conhecimento novo
+mediante pesquisa científica de qualidade e socialmente relevante e
+capacitar recursos humanos competentes para a prática docente. Além
+disso, o curso é dividido em duas áreas de concentração: Medicina e
+Ciências Aplicadas a Saúde. Assim o progama atende tanto profissionais
+médicos quanto não-médicos de áreas com as quais é possível estabelecer
+uma relação com a atividade médica.
+
+O programa segue sete linhas de pesquisas, sendo elas: 
+
+* Aspectos Clínicos, Epidemiológicos, Experimentais, Microbiológicos, Patológicos, Terapêuticos e Pro-
+filáticos das Doenças Crônico-Degenerativas
+
+* Aspectos Clínicos, Epidemiológicos, Experimentais, Microbiológicos, Patológicos, Terapêuticos e Pro-
+filáticos das Doenças Infecciosas
+
+* Distúrbios do Metabolismo
+
+* Estudo de plantas, fitoativos e fármacos
+
+* Instrumentação médica e processamentos de sinais biomédicos
+
+* Métodos Epidemiológicos nas Ciências Médicas
+
+* Oncologia e Biologia Molecular Aplicadas à Medicina
+
+Ainda, o programa conta com laborátorios próprios, além de laboratórios mantidos pelos docentes e pesquisadores na Faculdade de Medicina, todos muito bem equipados.
+
+Entre os laboratórios próprios temos laboratórios de Cirurgia
+Experimental, de Pesquisa em Doença de Chagas, de Genética Médica, de
+Imunologia Celular, de Pesquisas em Pediatria, de Genética Animal, de
+Biologia Molecular, de Patologia Clínica, de Antatomia Patológica, de
+Endocrinologia e Farmacologia Molecular, de Bioquímica e Química de
+Proteínas, de Virologia Molecular, Medicina Tropical, Dermatomicologia,
+Parasitologia e, finalmente, de Fisiologia Pulmonar.
+
+Além destes, temos mantidos pelos docentes e pesquisadores os
+laboratórios de Nefrologia, Fisiologia Cardiovascular, de Doenças
+Auto-imunes e Infecciosas, de Gastroenterologia, de Endocrinologia, de
+Ginecologia, de Psico-farmacologia, de Morfologia e Histologia, de
+Patologia Geral e de Doenças Auto-imunes.
+
+Finalmente, o Programa de Pós-Graduação em Ciências Médicas tem em seu
+quadro professores doutores, possui trinta e um docentes permanentes e
+sete docentes colaboradores, com nenhum docente visitante.
+
+<!-- falta colocar a contextualização -->
+##Saúde Coletiva
+###Informações
+
+A pós graduação em saúde coletiva da UnB começou em 2010 e continua em vigência até hoje. Inicialmente era um programa unicamente de mestrado acadêmico e profissionalizante, hoje o programa conta também com doutorado e pós-doutorado.
+
+Atualmente, o programa possui quatro linhas de pesquisa, essas são:
+
+* Política, Planejamento, Gestão e Atenção à saúde - Visa integrar a análise de formulação, as im-
+plementações das políticas de saúde e da organização dos sistemas e serviços de saúde para tentar
+encontrar mudanças no modelo de atenção a saúde ao mesmo tempo procurando contribuir para o
+desenvolvimento de estudos das práticas de gestão envolvendo a população.
+
+* Saúde, Cultura e Cidadania - Busca procurar os motivos socioeconômicos, culturais e políticos que
+causam influência no processo de saúde-doença, analisando casos históricos, sociológicos, políticos e
+antropológicos para assim promover de uma forma geral a saúde e a cidadania.
+
+* Epidemiologia, Ambiente e Trabalho - Desenvolve estudos voltados a frequência e a distribuição de
+fenômenos da saúde-doença para assim auxiliar na tomada de decisão na saúde pública
+
+* Pesquisa translacional em Saúde Coletiva - pesquisas interdisciplinares para acelerar trocas entre as
+pesquisas biomédicas, tecnológicas, clínicas, epidemiológicas e dos programas e políticas de saúde para
+facilitar sua implantação. É voltado para as inovações em produtos e processos.
+
+Atualmente o programa conta com o total de 23 docentes, abrangendo tanto doutorado quanto mestrado.
+
+#Referencial
+##Ciencia da Ciência
+
+O significado de Ciência ainda causa divergências, pode significar:
+conhecimento verdadeiro por oposição ao conhecimento errado ou duvidoso;
+o resultado de experiências em contraste com o que sabemos pelo senso
+comum; conhecimento medido, quantificado, e não aquele que adquirimos
+intuitivamente; a Verdade, com V maiúsculo em contraste com as verdades
+menores; um privilégio dos sábios e iniciados, nunca acessível às
+massas; um fator da produção, como o capital, o trabalho e a tecnologia;
+aquilo que fazem os cientistas. Dentre tantas definições é possível
+perceber que ciência é um tema bem complexo cuja definição varia de
+acordo com o tempo.
+
+Com a difusão dos meios computacionais na civilização moderna, o acesso
+e a troca de informações se tornaram extremamente simples e com isso
+passamos a lidar com uma quantidade de dados inimaginável até algum
+tempo atrás. Com isso, vivemos em um mundo no qual a informação é cada
+vez mais ubíqua, o que nos possibilita pensar em novas formas de se
+entender o mundo.
+
+Nesse contexto, com o crescente aumento da disponibilidade de dados
+sobre a produção científica, ciência da ciência surgiu do esforço para
+compreender o significado de ciência e poder agir sobre ele. É conhecido
+como sociologia da ciência, onde trata de examinar o fenômeno científico
+como um fator social, sendo a filosofia a mais antiga das ciências da
+ciência. Esta surge no mundo atual com um enfoque multidisciplinar cujo
+o objetivo é obter um melhor entendimento de como se dá a produção
+científica em suas mais diversas formas, tornando possível avaliar de
+uma forma mais direta o avanço da produção Científica e de grupos de
+pesquisas.
+
+##Lattes
+
+O Lattes é uma plataforma do Conselho Nacional de Desenvolvimento
+Científico e Tecnológico (CNPq) criada como uma forma de integrar e
+uniformizar os dados dos pesquisadores brasileiros. O uso da plataforma
+é bem amplo e, uma vez que a visualização é pública, o Lattes é muito
+utilizado como currículo profissional online. Esse currículo surgiu em
+1999, seguindo tentativas anteriores do CNPq de se padronizar o registro
+dos currículos, e cresceu rapidamente, sendo hoje o principal
+instrumento de avaliação de pesquisadores, professores e alunos e
+utilizado pelas principais universidades, institutos e centros de
+pesquisas.
+
+Por ser um registro padronizado e uma base de dados bem ampla e
+completa, além de ter as informações disponíveis atualizadas
+continuamente, o Lattes é muito utilizado para pesquisa e estudos sobre
+dados acadêmicos pela comunidade científica e tecnológica, sendo facil
+avaliar pesquisadores, selecionar consultores e especialistas e gerar
+estatísticas sobre a produção científica no país. Gerando assim
+resultados interessantes na esfera social.
+
+Assim, com o crescimento da Ciência da Ciência, é possível prever que a
+Plataforma Lattes, por oferecer um sistema de informações de grande
+confiabilidade e abrangência, será de extrema importância para o
+desenvolvimento desse campo no país.
+
+##Estudos de Ciência e Tecnologia
+
+Os estudos sociais da ciência e da tecnologia, também denominados
+estudos sobre ciência, tecnologia e sociedade (CTS) se dedicam a
+entender a relação entre essas 3 áreas. Não se trata de uma disciplina
+específica, mas de uma perspectiva ou enfoque metodológico aplicado ao
+processo de ensino-aprendizagem na área de ciência e tecnologia em
+geral, aplicado no processo de conhecimento técnico e científico.
+
+Esta área emergiu por volta do século XIX, influenciado pelo problema
+dos elementos geradores e decisivos na construção, sustentação e
+transformação do conhecimento, onde foram primeiramente analisados pelo
+ponto de vista filosófico e sociológico. Atualmente há novas pesquisar
+que se diferem pelas investigações voltadas ás influencias do contexto
+social na determinação do conteúdo do conhecimento científico. O
+amadurecimento dos estudos sobre ciência e tecnologia é destacado pela
+institucionalização de grupos de pesquisa, linhas temáticas em programas
+de pós-graduação, periódicos e congressos especializados e por uma
+multiplicidade de abordagens.
+
+#Metodologia
+
+A metodologia Cross Industry Standard Process for Data Mining (CRISP-DM)
+é uma metodologia especificamente desenhada para processos de mineração
+de dados que descreve abordagens comumente usadas por especialistas para
+atacar problemas utilizando um processo que fosse confiável e replicável
+e foi utilizada neste trabalho. As etapas estão demonstradas no Figura 1
+
+No CRISP-DM o trabalho se dá em um ciclo de seis fases, como se observa
+na figura acima, sendo elas:
+
+1. Entendimento do Negócio. Procura-se entender melhor o que precisamos analisar, buscando detalhes
+de como as coisas funcionam e como diversos elementos da pesquisa se relacionam. É importante,
+também, nesta etapa, entender bem os objetivos e as expectativas quanto ao trabalho.
+2. Coompreensão dos Dados. Aqui procuramos entender e descrever todos os dados disponíveis. Assim,
+é fundamental que se tenha um bom entedimento de quais dados serão relevantes e quais não serão.
+3. Preparação dos Dados. Uma vez que exista um bom entendimento dos dados, precisamos preparar esses
+dados para a análise, definindo em qual formato esses dados serão mais úteis, bem como escolhendo
+quais dados são relevantes para a análise.
+4. Modelagem. Trata-se da seleção e aplicação das técnicas mais apropriadas, de acordo com o que foi
+feito nas fases anteriores.
+5. Avaliação. Aqui avaliamos o que foi feito e nos perguntamos se os objetivos propostos foram realmente
+alcançados.
+6. Implantação. Finalmente, aplicamos o conhecimento obtido dos resultados do processo nas tomadas
+de decisão.
+
+#Resultados
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(readxl)
+library(jsonlite)
+library(readr)
+library(ggplot2)
+library(plyr)
+library(tidyr)
+library(stringr)
+```
+
+<!-- isto esta como subsection somente para ficar mais organizado -->
+##importando os dados 
+
+```{r}
+perfisCM <- fromJSON("PPG Ciências Medicas.profile.json")
+perfisPSC <- fromJSON("PPG Profissional Saúde Coletiva.profile.json")
+perfisSC <- fromJSON("PPG Saúde Coletiva.profile.json")
+
+adviseCM <- fromJSON("PPG Ciências Medicas.advise.json")
+advisePSC <- fromJSON("PPG Profissional Saúde Coletiva.advise.json")
+adviseSC <- fromJSON("PPG Saúde Coletiva.advise.json")
+
+publicationCM <- fromJSON("PPG Ciências Medicas.publication.json")
+publicationPSC <- fromJSON("PPG Profissional Saúde Coletiva.publication.json")
+publicationSC <- fromJSON("PPG Saúde Coletiva.publication.json")
+
+#unb.BDT <- fromJSON("unb.BDTD.json")
+#unb.Oasis <- fromJSON("oasisbr_unb all.json")
+
+DGP_Grupos <- read_excel("unb.DGP.xls", sheet = 1, skip = 2)
+DGP_Pesquisa <- read_excel("unb.DGP.xls", sheet = 2)
+DGP_Parcerias <- read_excel("unb.DGP.xls", sheet = 3)
+DGP_Participantes <-read_excel("unb.DGP.xls", sheet = 4)
+DGP_Producao <- read_excel("unb.DGP.xls", sheet = 5)
+
+```
+##perfils Ciencias Medicas
+
+##perfils proficional saude coletiva
+
+##perfils saude coletiva
+
+
+##adivise Ciencias Medicas
+
+```{r}
+advise <- adviseCM
+andamento <- data.frame()
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_MESTRADO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_MESTRADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_DE_POS_DOUTORADO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_DE_POS_DOUTORADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_DOUTORADO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_DOUTORADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_GRADUACAO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_GRADUACAO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_INICIACAO_CIENTIFICA))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_INICIACAO_CIENTIFICA[[i]])
+
+concluido <- data.frame()
+for( i in 1:length(advise$ORIENTACAO_CONCLUIDA_MESTRADO))
+concluido <- rbind(concluido, advise$ORIENTACAO_CONCLUIDA_MESTRADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_CONCLUIDA_POS_DOUTORADO))
+concluido <- rbind(concluido, advise$ORIENTACAO_CONCLUIDA_POS_DOUTORADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_CONCLUIDA_DOUTORADO))
+concluido <- rbind(concluido, advise$ORIENTACAO_CONCLUIDA_DOUTORADO[[i]])
+for( i in 1:length(advise$OUTRAS_ORIENTACOES_CONCLUIDAS))
+concluido <- rbind(concluido, advise$OUTRAS_ORIENTACOES_CONCLUIDAS[[i]])
+
+concluidoCM <- concluido
+andamentoSC <- andamento
+
+```
+
+
+
+##adivise saude coletiva
+
+```{r}
+advise <- adviseSC
+andamento <- data.frame()
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_MESTRADO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_MESTRADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_DE_POS_DOUTORADO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_DE_POS_DOUTORADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_DOUTORADO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_DOUTORADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_GRADUACAO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_GRADUACAO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_INICIACAO_CIENTIFICA))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_INICIACAO_CIENTIFICA[[i]])
+
+concluido <- data.frame()
+for( i in 1:length(advise$ORIENTACAO_CONCLUIDA_MESTRADO))
+concluido <- rbind(concluido, advise$ORIENTACAO_CONCLUIDA_MESTRADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_CONCLUIDA_POS_DOUTORADO))
+concluido <- rbind(concluido, advise$ORIENTACAO_CONCLUIDA_POS_DOUTORADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_CONCLUIDA_DOUTORADO))
+concluido <- rbind(concluido, advise$ORIENTACAO_CONCLUIDA_DOUTORADO[[i]])
+for( i in 1:length(advise$OUTRAS_ORIENTACOES_CONCLUIDAS))
+concluido <- rbind(concluido, advise$OUTRAS_ORIENTACOES_CONCLUIDAS[[i]])
+
+andamentoSC <- andamento
+concluidoSC <- concluido
+
+```
+
+##adivise proficional saude coletiva
+
+```{r}
+advise <- adviseSC
+andamento <- data.frame()
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_MESTRADO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_MESTRADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_DE_POS_DOUTORADO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_DE_POS_DOUTORADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_DOUTORADO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_DOUTORADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_GRADUACAO))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_GRADUACAO[[i]])
+for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_INICIACAO_CIENTIFICA))
+andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_INICIACAO_CIENTIFICA[[i]])
+
+concluido <- data.frame()
+for( i in 1:length(advise$ORIENTACAO_CONCLUIDA_MESTRADO))
+concluido <- rbind(concluido, advise$ORIENTACAO_CONCLUIDA_MESTRADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_CONCLUIDA_POS_DOUTORADO))
+concluido <- rbind(concluido, advise$ORIENTACAO_CONCLUIDA_POS_DOUTORADO[[i]])
+for( i in 1:length(advise$ORIENTACAO_CONCLUIDA_DOUTORADO))
+concluido <- rbind(concluido, advise$ORIENTACAO_CONCLUIDA_DOUTORADO[[i]])
+for( i in 1:length(advise$OUTRAS_ORIENTACOES_CONCLUIDAS))
+concluido <- rbind(concluido, advise$OUTRAS_ORIENTACOES_CONCLUIDAS[[i]])
+
+andamentoPSC <- andamento
+concluidoPSC <- concluido
+
+```
+
+##publicaçoes Ciencias Medicas
+
+```{r}
+publication_periodicoCM <- publicationCM$PERIODICO %>% ldply(data.frame)
+publication_livroCM <- publicationCM$LIVRO %>% ldply(data.frame)
+publication_cap_livroCM <- publicationCM$CAPITULO_DE_LIVRO %>% ldply(data.frame)
+publication_jornaisCM <- publicationCM$TEXTO_EM_JORNAIS %>% ldply(data.frame)
+publication_eventoCM <- publicationCM$EVENTO %>% ldply(data.frame)
+publication_artigosCM <- publicationCM$ARTIGO_ACEITO %>% ldply(data.frame)
+publication_demaisCM <- publicationCM$DEMAIS_TIPOS_DE_PRODUCAO_BIBLIOGRAFICA %>% ldply(data.frame)
+```
+
+##publicaçoes saude coletiva
+```{r}
+publication_periodicoSC <- publicationSC$PERIODICO %>% ldply(data.frame)
+publication_livroSC <- publicationSC$LIVRO %>% ldply(data.frame)
+publication_cap_livroSC <- publicationSC$CAPITULO_DE_LIVRO %>% ldply(data.frame)
+publication_jornaisSC <- publicationSC$TEXTO_EM_JORNAIS %>% ldply(data.frame)
+publication_eventoSC <- publicationSC$EVENTO %>% ldply(data.frame)
+publication_artigosSC <- publicationSC$ARTIGO_ACEITO %>% ldply(data.frame)
+publication_demaisSC <- publicationSC$DEMAIS_TIPOS_DE_PRODUCAO_BIBLIOGRAFICA %>% ldply(data.frame)
+```
+
+##publicaçoes proficional saude coletiva
+
+```{r}
+publication_periodicoPSC <- publicationPSC$PERIODICO %>% ldply(data.frame)
+publication_livroPSC <- publicationPSC$LIVRO %>% ldply(data.frame)
+publication_cap_livroPSC <- publicationPSC$CAPITULO_DE_LIVRO %>% ldply(data.frame)
+publication_jornaisPSC <- publicationPSC$TEXTO_EM_JORNAIS %>% ldply(data.frame)
+publication_eventoPSC <- publicationPSC$EVENTO %>% ldply(data.frame)
+publication_artigosPSC <- publicationPSC$ARTIGO_ACEITO %>% ldply(data.frame)
+publication_demaisPSC <- publicationPSC$DEMAIS_TIPOS_DE_PRODUCAO_BIBLIOGRAFICA %>% ldply(data.frame)
+```
+
+
+##dgp
+
+#Conclusão

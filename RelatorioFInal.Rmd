@@ -203,35 +203,16 @@ e foi utilizada neste trabalho. As etapas estão demonstradas no Figura 1
 No CRISP-DM o trabalho se dá em um ciclo de seis fases, como se observa
 na figura acima, sendo elas:
 
-1. Entendimento do Negócio. Procura-se entender melhor o que precisamos analisar, buscando detalhes
-de como as coisas funcionam e como diversos elementos da pesquisa se relacionam. É importante,
-também, nesta etapa, entender bem os objetivos e as expectativas quanto ao trabalho.
-2. Coompreensão dos Dados. Aqui procuramos entender e descrever todos os dados disponíveis. Assim,
-é fundamental que se tenha um bom entedimento de quais dados serão relevantes e quais não serão.
-3. Preparação dos Dados. Uma vez que exista um bom entendimento dos dados, precisamos preparar esses
-dados para a análise, definindo em qual formato esses dados serão mais úteis, bem como escolhendo
-quais dados são relevantes para a análise.
-4. Modelagem. Trata-se da seleção e aplicação das técnicas mais apropriadas, de acordo com o que foi
-feito nas fases anteriores.
-5. Avaliação. Aqui avaliamos o que foi feito e nos perguntamos se os objetivos propostos foram realmente
-alcançados.
-6. Implantação. Finalmente, aplicamos o conhecimento obtido dos resultados do processo nas tomadas
-de decisão.
+## Entendimento do Negócio. 
+Procura-se entender melhor o que precisamos analisar, buscando detalhes de como as coisas funcionam e como diversos elementos da pesquisa se relacionam. É importante, também, nesta etapa, entender bem os objetivos e as expectativas quanto ao trabalho. No caso deste projeto busca-se entender a necessidade do Sistema Nacional de Pós-Graduação do Brasil de produzir análises de alta qualidade de suas pós-graduações, com baixo custo.
 
-#Resultados
-```{r echo=FALSE, warning=FALSE, message=FALSE}
-library(dplyr)
-library(readxl)
-library(jsonlite)
-library(readr)
-library(ggplot2)
-library(plyr)
-library(tidyr)
-library(stringr)
-```
+Além disso, é nesta fase que são identificados os recursos e dificuldades que podem influenciar no desenvolvimento do projeto. Tendo sido identificado o tempo especificado para produzir resultados tendo outros trabalhos e outras disciplinas a serem cursadas ao mesmo tempo. Além disso tem o risco de abandono dos integrantes do grupo ou até mesmo a falta de dedicação necessária.
 
-<!-- isto esta como subsection somente para ficar mais organizado -->
-##importando os dados 
+
+## Coompreensão dos Dados. 
+Aqui procuramos entender e descrever todos os dados disponíveis. Assim, é fundamental que se tenha um bom entedimento de quais dados serão relevantes e quais não serão.
+
+Os dados abaixos foram fornecidos pelos professores responsáveis da disciplina. Os dados foram gerados no mês de maio de 2018, e compilam informações entre os anos de 2010 e 2017. Os arquivos estão no formato JSON, e seus atributos iniciais e conteúdos são apresentados a seguir.
 
 ```{r}
 perfisCM <- fromJSON("PPG Ciências Medicas.profile.json")
@@ -256,16 +237,77 @@ DGP_Participantes <-read_excel("unb.DGP.xls", sheet = 4)
 DGP_Producao <- read_excel("unb.DGP.xls", sheet = 5)
 
 ```
-##perfils Ciencias Medicas
 
-##perfils proficional saude coletiva
+Tanto o arquivo "PPG Ciências Medicas.profile.json", "PPG Profissional Saúde Coletiva.profile.json" e "PPG Saúde Coletiva.profile.json" apresentam o perfil dos docentes vinculados a programas das áreas de Ciências Médicas, e de Saude Coletiva profissional e Saúde Coletiva.
 
-##perfils saude coletiva
+Já os arquivos "PPG Ciências Medicas.advise.json", "PPG Profissional Saúde Coletiva.advise.json" e "PPG Saúde Coletiva.advise.json" apresenta dados sobre as orientações de mestrado e doutorado feitas por todos os docentes vinculados a programas de pós-graduação das áreas de Ciências Médicas, e de Saude Coletiva profissional e Saúde Coletiva.
+
+Os arquivos "PPG Ciências Medicas.publication.json", "PPG Profissional Saúde Coletiva.publication.json" e "PPG Saúde Coletiva.publication.json" apresenta dados sobre a produção bibliográfica gerada por todos os docentes vinculados a programas das áreas de Ciências Médicas, e de Saude Coletiva profissional e Saúde Coletiva.
+
+### Descrição dos dados
+A análise foi realizada no RStudio utilizando a linguagem, para leitura e interpretação dos dados serão usados as seguintes bibliotecas abaixo.
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(readxl)
+library(jsonlite)
+library(readr)
+library(ggplot2)
+library(plyr)
+library(tidyr)
+library(stringr)
+```
 
 
-##adivise Ciencias Medicas
+#### análise dos perfils
+
+O arquivo o arquivo "PPG Ciências Medicas.profile.json", "PPG Profissional Saúde Coletiva.profile.json" e "PPG Saúde Coletiva.profile.json", que contém dados que caracterizam o perfil profissional de todos os docentes do grupo sob análise, tem as caracteristicas do nome, as áreas de atuação, endereço profissional, as produções bibliográficas, as orientações acadêmicas e a senioridade.
+```{r}
+summary(perfisCM$`0056945699042193`)
+summary(perfisPSC$`0153088935731412`)
+summary(perfisSC$`0153088935731412`)
+```
+
+Existindo um total de 38 docentes da Ciências Médicas, 27 docentes do Profissional de Saúde Coletiva e 24 docentes de Saúde Coletiva.
 
 ```{r}
+length(perfisCM)
+length(perfisPSC)
+length(perfisSC)
+```
+
+Esses dados terão potencial para responder às questões de data mining? O que é possível gerar a partir desses dados, para o conjunto dos 1592 docentes da UnB? A fim de compreender a relevância dos dados para a avaliação da produção acadêmica nas pós-graduações brasileiras pode-se recorrer a trabalhos como os
+seguintes:
+
+• Leite (2018) apresenta, em suas “Considerações básicas sobre a Avaliação do Sistema Nacional de
+Pós-Graduação”, o conjunto dos itens que são tópicos de avaliação das pós-graduações pela CAPES, e
+que envolvem, entre outros:
+
+  – Avaliação do corpo docente, com 20% a 30% de peso na avaliação total do programa, a depender do seu tipo. Analisando-se de forma mais detalhada os critérios de avaliação do corpo docente, indicados por Leite, o que é possível gerar com base nos dados disponíveis em unb.prof? Há dados que permitam identificar o perfil do docente, como proposto pela CAPES, inclusive no documento de área específica na qual atua o pesquisador? Que outros aspectos relevantes para a CAPES podem ser levantados com base nos dados dessa fonte?
+
+  – Avaliação do corpo discente, Teses e dissertações, com 30% a 20% de peso na avaliação total do programa, a depender de seu tipo. Os dados sobre orientação permitem fazer quais tipos de avaliações do corpo discente?
+  
+  – Avaliação da produção intelectual, com 40% de peso na avaliação total. Qual a relevância dos dados em unb.prof para essa avaliação? Que outros arquivos podem melhor subsidiar essa avaliação? 
+  
+• Em busca de considerar outros fatores relevantes para a avaliação da pós-graduação, não considerados no modelo da CAPES, pode-se recorrer ao trabalho de Kalpazidou Schmidt e Graversen (2018), que apresentam um conjunto de fatores persistentes que facilitam a existência de ambientes de pesquisa inovadores e dinâmicos, dentre os quais se destaca:
+
+  – Atividade em pesquisas com elevado grau de impacto social;
+  
+  – Promoção de elevado grau de autonomia individual, tanto do ponto de vista teórico quanto metodológico;
+  
+  – Possuem um bom clima de trabalho, baseado no trabalho em times;
+  
+  – São internacioinalmente bem conhecidas etc
+
+#### análise das orientações
+
+```{r}
+names(adviseCM)
+names(advisePSC)
+names(adviseSC)
+```
+
+```{r}
+## adivise da base de dados de Ciências Médicas
 advise <- adviseCM
 andamento <- data.frame()
 for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_MESTRADO))
@@ -290,15 +332,9 @@ for( i in 1:length(advise$OUTRAS_ORIENTACOES_CONCLUIDAS))
 concluido <- rbind(concluido, advise$OUTRAS_ORIENTACOES_CONCLUIDAS[[i]])
 
 concluidoCM <- concluido
-andamentoSC <- andamento
+andamentoCM <- andamento
 
-```
-
-
-
-##adivise saude coletiva
-
-```{r}
+## adivise da base de dados de Saude Coletiva
 advise <- adviseSC
 andamento <- data.frame()
 for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_MESTRADO))
@@ -324,13 +360,8 @@ concluido <- rbind(concluido, advise$OUTRAS_ORIENTACOES_CONCLUIDAS[[i]])
 
 andamentoSC <- andamento
 concluidoSC <- concluido
-
-```
-
-##adivise proficional saude coletiva
-
-```{r}
-advise <- adviseSC
+## adivise da base de dados de Profissional Saude Coletiva
+advise <- advisePSC
 andamento <- data.frame()
 for( i in 1:length(advise$ORIENTACAO_EM_ANDAMENTO_MESTRADO))
 andamento <- rbind(andamento, advise$ORIENTACAO_EM_ANDAMENTO_MESTRADO[[i]])
@@ -356,9 +387,37 @@ concluido <- rbind(concluido, advise$OUTRAS_ORIENTACOES_CONCLUIDAS[[i]])
 andamentoPSC <- andamento
 concluidoPSC <- concluido
 
+
 ```
 
-##publicaçoes Ciencias Medicas
+
+Da Ciências Médicas foram encontrados 214 orientações em andamento e 873 orientações concluidas
+```{r}
+dim(andamentoCM)
+dim(concluidoCM)
+```
+
+Da Saúde Coletiva foram encontrados 111 orientações em andamento e 737 orientações concluidas
+```{r}
+dim(andamentoSC)
+dim(concluidoSC)
+```
+
+Da Saúde Coletiva foram encontrados 112 orientações em andamento e 682 orientações concluidas
+```{r}
+dim(andamentoPSC)
+dim(concluidoPSC)
+```
+
+
+#### análise das publicações
+
+As publicações são divididas em 7 tipos(periódicos, livros, capítulos de livros, jornais, eventos, artigos, demais), todos esses tipos estavam agrupados por ano. 
+```{r}
+names(publicationCM)
+names(publicationPSC)
+names(publicationSC)
+```
 
 ```{r}
 publication_periodicoCM <- publicationCM$PERIODICO %>% ldply(data.frame)
@@ -368,10 +427,7 @@ publication_jornaisCM <- publicationCM$TEXTO_EM_JORNAIS %>% ldply(data.frame)
 publication_eventoCM <- publicationCM$EVENTO %>% ldply(data.frame)
 publication_artigosCM <- publicationCM$ARTIGO_ACEITO %>% ldply(data.frame)
 publication_demaisCM <- publicationCM$DEMAIS_TIPOS_DE_PRODUCAO_BIBLIOGRAFICA %>% ldply(data.frame)
-```
 
-##publicaçoes saude coletiva
-```{r}
 publication_periodicoSC <- publicationSC$PERIODICO %>% ldply(data.frame)
 publication_livroSC <- publicationSC$LIVRO %>% ldply(data.frame)
 publication_cap_livroSC <- publicationSC$CAPITULO_DE_LIVRO %>% ldply(data.frame)
@@ -379,11 +435,7 @@ publication_jornaisSC <- publicationSC$TEXTO_EM_JORNAIS %>% ldply(data.frame)
 publication_eventoSC <- publicationSC$EVENTO %>% ldply(data.frame)
 publication_artigosSC <- publicationSC$ARTIGO_ACEITO %>% ldply(data.frame)
 publication_demaisSC <- publicationSC$DEMAIS_TIPOS_DE_PRODUCAO_BIBLIOGRAFICA %>% ldply(data.frame)
-```
 
-##publicaçoes proficional saude coletiva
-
-```{r}
 publication_periodicoPSC <- publicationPSC$PERIODICO %>% ldply(data.frame)
 publication_livroPSC <- publicationPSC$LIVRO %>% ldply(data.frame)
 publication_cap_livroPSC <- publicationPSC$CAPITULO_DE_LIVRO %>% ldply(data.frame)
@@ -391,9 +443,49 @@ publication_jornaisPSC <- publicationPSC$TEXTO_EM_JORNAIS %>% ldply(data.frame)
 publication_eventoPSC <- publicationPSC$EVENTO %>% ldply(data.frame)
 publication_artigosPSC <- publicationPSC$ARTIGO_ACEITO %>% ldply(data.frame)
 publication_demaisPSC <- publicationPSC$DEMAIS_TIPOS_DE_PRODUCAO_BIBLIOGRAFICA %>% ldply(data.frame)
+
 ```
 
 
-##dgp
+Entretanto, cada tipo de publicação possui dados diferentes, como é o caso dos periódicos e dos eventos, por exemplo. Os dados dos periódicos são os seguintes:
 
-#Conclusão
+```{r}
+names(publication_periodicoCM)
+names(publication_periodicoPSC)
+names(publication_periodicoSC)
+```
+
+Já os dados dos eventos são os seguintes:
+```{r}
+names(publication_eventoCM)
+names(publication_eventoPSC)
+names(publication_eventoSC)
+```
+
+## Preparação dos Dados. 
+Uma vez que exista um bom entendimento dos dados, precisamos preparar esses dados para a análise, definindo em qual formato esses dados serão mais úteis, bem como escolhendo quais dados são relevantes para a análise. Nesta etapa é preciso selecionar e escolher os atributos dos dados que serão trabalhados. Tendo sido selecionado as base de dados BDTD, DGP e Oasis para complementar os dados obtidos do Lattes sobre Saude Coletiva. Sendo sido realizado a integração dessas bases, fazendo merges e aggregations com as funções inner_join(), rbind().
+
+Na base de dados do DPG existem informações sobre as linhas de pesquisa, as parcerias, os participantes, os numeros de participação e grupos de pesquisa.
+```{r}
+excel_sheets("unb.DGP.xls")
+```
+<!-- Colocar merge com a tabela excel_sheets -->
+
+
+## Modelagem.
+
+Nesta fase são selecionadas e aplicadas as técnicas de mineração de dados mais apropriadas, dependendo dos objetivos identificados na primeira fase. Ou seja, foi realizada a escolha, contrução e execução do modelo de modelagem utilizado.
+
+## Avaliação.
+
+A quinta fase pede o acompanhamento dos resultados objetivos e a avaliação da aplicabilidade confiável dos insights e conhecimentos obtidos. Ocorrendo um processo de revisão e definição para os proximos passos, verificando se existem questões relacionadas à organização que não foram suficientemente abordadas. Deve-se refletir se o uso repetido do modelo criado pode trazer algum “efeito colateral” para a organização.
+
+##Implantação.
+
+Finalmente, aplicamos o conhecimento obtido dos resultados do processo nas tomadas de decisão. Ou seja, se realiza o planejamento de implantação dos produtos desenvolvidos (scripts, no caso do executado nesta disciplina) para o ambiente operacional, para seu uso repetitivo, envolvendo atividades de monitoramento e manutenção do sistema (script) desenvolvido. A fase de implantação se da como concluida com a produção e apresentação do relatório final com os resultados do projeto.
+
+
+
+
+
+

@@ -213,7 +213,17 @@ Além disso, é nesta fase que são identificados os recursos e dificuldades que
 
 Aqui procuramos entender e descrever todos os dados disponíveis. Assim, é fundamental que se tenha um bom entedimento de quais dados serão relevantes e quais não serão.
 
-Os dados abaixos foram fornecidos pelos professores responsáveis da disciplina. Os dados foram gerados no mês de maio de 2018, e compilam informações entre os anos de 2010 e 2017. Os arquivos estão no formato JSON, e seus atributos iniciais e conteúdos são apresentados a seguir.
+Os dados abaixos foram fornecidos pelos professores responsáveis da disciplina. Os dados foram gerados no mês de maio de 2018, e compilam informações entre os anos de 2010 e 2017. Os arquivos estão no formato JSON.
+
+Tanto o arquivo "PPG Ciências Medicas.profile.json", "PPG Profissional Saúde Coletiva.profile.json" e "PPG Saúde Coletiva.profile.json" apresentam o perfil dos docentes vinculados a programas das áreas de Ciências Médicas, Saúde Coletiva Profissional e Saúde Coletiva, respectivamente.
+
+Já os arquivos "PPG Ciências Medicas.advise.json", "PPG Profissional Saúde Coletiva.advise.json" e "PPG Saúde Coletiva.advise.json" apresentam dados sobre as orientações de mestrado e doutorado feitas por todos os docentes vinculados a programas de pós-graduação das áreas de Ciências Médicas, Saúde Coletiva Profissional e Saúde Coletiva, respectivamente.
+
+Finalmente, os arquivos "PPG Ciências Medicas.publication.json", "PPG Profissional Saúde Coletiva.publication.json" e "PPG Saúde Coletiva.publication.json" apresentam dados sobre a produção bibliográfica gerada por todos os docentes vinculados a programas das áreas de Ciências Médicas, Saude Coletiva Profissional e Saúde Coletiva, respectivamente.
+
+### Descrição e análise exploratória dos dados
+
+A análise foi realizada no RStudio utilizando a linguagem, para leitura e interpretação dos dados serão usados as seguintes bibliotecas abaixo.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 library(dplyr)
@@ -226,6 +236,9 @@ library(tidyr)
 library(stringr)
 ```
 
+#### Perfis
+
+Os arquivos "PPG Ciências Medicas.profile.json", "PPG Profissional Saúde Coletiva.profile.json" e "PPG Saúde Coletiva.profile.json" contém dados que caracterizam o perfil profissional de todos os docentes do grupo sob análise. Com isso temos o nome, as áreas de atuação, endereço profissional, as produções bibliográficas, as orientações acadêmicas e a senioridade de cada professor. Todos os três arquivos tem a mesma estrutura, diferenciando-se apenas nos docentes presentes.
 ```{r}
 perfisCM <- fromJSON("PPG Ciências Medicas.profile.json")
 perfisPSC <- fromJSON("PPG Profissional Saúde Coletiva.profile.json")
@@ -242,29 +255,7 @@ publicationSC <- fromJSON("PPG Saúde Coletiva.publication.json")
 #unb.BDT <- fromJSON("unb.BDTD.json")
 #unb.Oasis <- fromJSON("oasisbr_unb all.json")
 
-DGP_Grupos <- read_excel("unb.DGP.xls", sheet = 1, skip = 2)
-DGP_Pesquisa <- read_excel("unb.DGP.xls", sheet = 2)
-DGP_Parcerias <- read_excel("unb.DGP.xls", sheet = 3)
-DGP_Participantes <-read_excel("unb.DGP.xls", sheet = 4)
-DGP_Producao <- read_excel("unb.DGP.xls", sheet = 5)
-
 ```
-
-Tanto o arquivo "PPG Ciências Medicas.profile.json", "PPG Profissional Saúde Coletiva.profile.json" e "PPG Saúde Coletiva.profile.json" apresentam o perfil dos docentes vinculados a programas das áreas de Ciências Médicas, Saúde Coletiva Profissional e Saúde Coletiva, respectivamente.
-
-Já os arquivos "PPG Ciências Medicas.advise.json", "PPG Profissional Saúde Coletiva.advise.json" e "PPG Saúde Coletiva.advise.json" apresentam dados sobre as orientações de mestrado e doutorado feitas por todos os docentes vinculados a programas de pós-graduação das áreas de Ciências Médicas, Saúde Coletiva Profissional e Saúde Coletiva, respectivamente.
-
-Finalmente, os arquivos "PPG Ciências Medicas.publication.json", "PPG Profissional Saúde Coletiva.publication.json" e "PPG Saúde Coletiva.publication.json" apresentam dados sobre a produção bibliográfica gerada por todos os docentes vinculados a programas das áreas de Ciências Médicas, Saude Coletiva Profissional e Saúde Coletiva, respectivamente.
-
-### Descrição e análise exploratória dos dados
-
-A análise foi realizada no RStudio utilizando a linguagem, para leitura e interpretação dos dados serão usados as seguintes bibliotecas abaixo.
-
-
-
-#### Perfis
-
-Os arquivos "PPG Ciências Medicas.profile.json", "PPG Profissional Saúde Coletiva.profile.json" e "PPG Saúde Coletiva.profile.json" contém dados que caracterizam o perfil profissional de todos os docentes do grupo sob análise. Com isso temos o nome, as áreas de atuação, endereço profissional, as produções bibliográficas, as orientações acadêmicas e a senioridade de cada professor. Todos os três arquivos tem a mesma estrutura, diferenciando-se apenas nos docentes presentes.
 
 ```{r}
 summary(perfisCM$`0056945699042193`)
@@ -281,8 +272,7 @@ length(perfisPSC)
 length(perfisSC)
 ```
 
-Podemos notar também que temos 5 grandes áreas no programa de Ciências Médicas, 8 no de Saúde Coletiva Profissional e 9 no de Saúde Coletiva Profissional. Para áreas, temos
-22, 24 e 24, respectivamente. Já para sub-áreas, temos 75, 64 e 49, respectivamente. Finalmente, para especialidades, temos 40, 21 e 21, respectivamente.
+Podemos notar também que temos 5 grandes áreas no programa de Ciências Médicas, 8 no de Saúde Coletiva Profissional e 9 no de Saúde Coletiva Profissional. Em relação as áreas, temos 22, 24 e 24, respectivamente. Já para sub-áreas, temos 75, 64 e 49, respectivamente. Finalmente, para especialidades, temos 40, 21 e 21, respectivamente.
 
 ```{r warning=FALSE}
 # Quantidade de areas, sub-areas e especialidades
@@ -537,7 +527,7 @@ publication_demaisPSC <- publicationPSC$DEMAIS_TIPOS_DE_PRODUCAO_BIBLIOGRAFICA %
 ```
 
 
-Entretanto, cada tipo de publicação possui dados diferentes, como é o caso dos periódicos e dos eventos, por exemplo. Os dados dos periódicos são os seguintes:
+Entretanto, cada tipo de publicação possui dados diferentes, como é o caso dos periódicos e dos eventos, por exemplo. Os dados dos periódicos são id, natureza, título, ano, volume, issn, páginas, doi, autores, autores endogeno.
 
 ```{r}
 names(publication_periodicoCM)
@@ -545,7 +535,7 @@ names(publication_periodicoPSC)
 names(publication_periodicoSC)
 ```
 
-Já os dados dos eventos são os seguintes:
+Já os dados dos eventos são identificador, natureza, título, nome do evento, ano do trabalho, país do evento, cidade do envento, doi, classificação, páginas, autores e autores endogeno.
 ```{r}
 names(publication_eventoCM)
 names(publication_eventoPSC)
@@ -580,7 +570,7 @@ nrow(publication_artigosSC)
 nrow(publication_demaisSC)
 
 ```
-Para o programa de Saude coletiva Proficional temos:
+E por ultimo, para o programa de Saude coletiva Profissional temos:
 
 ```{r}
 
@@ -596,11 +586,16 @@ nrow(publication_demaisPSC)
 
 
 ## 3. Preparação dos Dados. 
-Uma vez que exista um bom entendimento dos dados, precisamos preparar esses dados para a análise, definindo em qual formato esses dados serão mais úteis, bem como escolhendo quais dados são relevantes para a análise. Nesta etapa é preciso selecionar e escolher os atributos dos dados que serão trabalhados. Tendo sido selecionado as base de dados BDTD, DGP e Oasis para complementar os dados obtidos do Lattes sobre Saude Coletiva. Sendo sido realizado a integração dessas bases, fazendo merges e aggregations com as funções inner_join(), rbind().
+Uma vez que exista um bom entendimento dos dados, precisamos prepará-los para a análise, definindo em qual formato esses dados serão mais úteis, bem como escolhendo quais dados são relevantes para a análise. Nesta etapa é preciso selecionar e escolher os atributos dos dados que serão trabalhados. Tendo sido selecionado as base de dados BDTD, DGP e Oasis para complementar os dados obtidos do Lattes sobre Saude Coletiva. Sendo sido realizado a integração dessas bases, fazendo merges e aggregations com as funções inner_join(), rbind().
 
 Na base de dados do DGP existem informações sobre as linhas de pesquisa, as parcerias, os participantes, os numeros de participação e grupos de pesquisa.
 ```{r}
 excel_sheets("unb.DGP.xls")
+DGP_Grupos <- read_excel("unb.DGP.xls", sheet = 1, skip = 2)
+DGP_Pesquisa <- read_excel("unb.DGP.xls", sheet = 2)
+DGP_Parcerias <- read_excel("unb.DGP.xls", sheet = 3)
+DGP_Participantes <-read_excel("unb.DGP.xls", sheet = 4)
+DGP_Producao <- read_excel("unb.DGP.xls", sheet = 5)
 ```
 
 Para a análise detalhada foram utilizadas as tabelas de participantes e de pesquisa e colocadas em uma única tabela contendo os principais dados de todas estas. Alem disso como as tabelas de pesquisas de andamento e concluido estavam separadas, foi utilizado um rbind para uní-las, colocando todas as informações importantes juntas.
@@ -628,11 +623,7 @@ pesquisaPSC <- rbind(pesquisa_andamentoPSC, pesquisa_concluidaPSC)
 
 ```
 
-
-
-<!-- Colocar merge com a tabela excel_sheets -->
-
-Para uma futura junção entre as bases do Lattes com as outras foi criada uma tabela de cada uma das bases de dados contendo o nome e o id lattes dos professores
+Alem disso, para uma futura junção entre as bases do Lattes com as outras foi criada uma tabela de cada uma das bases de dados contendo o nome e o id lattes dos professores
 
 ```{r warning=FALSE}
 # dados de Ciências Médicas
@@ -677,8 +668,6 @@ DGP_Pesquisa <- DGP_Pesquisa %>%
 filter(`Ano Censo` == 2016) %>%
 select(-`Ano Censo`)
 ```
-
-
 
 
 Com o filtro de ano aplicado podemos agora juntar os dados dos grupos de pesquisas, que estão armazenados em DGP_Grupos, com os outros, assim, aplicamos um left join com as produçoes, parcerias e com os participantes.
@@ -730,7 +719,7 @@ head(linhas_pequisa_quantPSC)
 ```
 
 
-
+A linha de pesquisa mais frequente em Ciências Médicas é a respeito da Manifestação digestiva da doença de Chagas, em Saúde Coletiva pe a respeito da segurança Alimentar e Nutricional de populações: diagnóstico e estratégias públicas, por ultimo, em Profissional Saúde COletiva a linha de pesquisa mais frequente é o Processo de trabalho, práticas de atenção, gestão e formação em saúde.
 
 
 Alem de agrupar a linha de pesquisa também foi aplicado um filtro para so trabalharmos com os frupos de pesquisa que os professores participam. Para isso foi armazenado o token de pesquisa de cada professor:
@@ -784,13 +773,6 @@ group_by(`Nome Grupo Pesquisa`)
 
 A quinta fase pede o acompanhamento dos resultados objetivos e a avaliação da aplicabilidade confiável dos insights e conhecimentos obtidos. Ocorrendo um processo de revisão e definição para os proximos passos, verificando se existem questões relacionadas à organização que não foram suficientemente abordadas. Deve-se refletir se o uso repetido do modelo criado pode trazer algum “efeito colateral” para a organização.
 
-## 6. Implantação.
-
-Finalmente, aplicamos o conhecimento obtido dos resultados do processo nas tomadas de decisão. Ou seja, se realiza o planejamento de implantação dos produtos desenvolvidos (scripts, no caso do executado nesta disciplina) para o ambiente operacional, para seu uso repetitivo, envolvendo atividades de monitoramento e manutenção do sistema (script) desenvolvido. A fase de implantação se da como concluida com a produção e apresentação do relatório final com os resultados do projeto.
-
-
-Com os dados prontos para serem analisados podemos começar a mostrar os dados
-
 
 ```{r warning=FALSE, out.width = '60%'}
 data.frame(Reduce(rbind, perfisCM)) %>%
@@ -841,6 +823,9 @@ facet_grid(sub_area~., scales = "free")+
 labs(title ="Especialidades em Cirurgia e Clínica Médica",
 x = "Especialidade", y = "Qtd de professores")
 ```
+Com a análise dos graficos é possível perceber que é alto o numero dos que não tem especialidade
+
+
 
 proporçao orientadores e alunos
 
@@ -852,13 +837,11 @@ orientadores <- rbind(orientadores, nome_orientadores[i])
 nome_orientadores <- sapply(andamentoCM$nome_orientadores, function(x)x)
 for( i in 1:length(nome_orientadores))
 orientadores <- rbind(orientadores, nome_orientadores[i])
-length(unique(orientadores))
 alunos <- list()
 for( i in 1:length(concluidoCM$nome_aluno))
 alunos <- rbind(alunos, concluidoCM$nome_aluno[i])
 for( i in 1:length(andamentoCM$nome_aluno))
 alunos <- rbind(alunos, andamentoCM$nome_aluno[i])
-length(unique(alunos))
 total <- data.frame(tipo = c("alunos", "orientadores"), valores= c( length(unique(alunos)),
 length(unique(orientadores))))
 ggplot(total, aes(x = "", y=valores, fill = tipo)) + geom_col() + coord_polar(theta = "y")
@@ -870,17 +853,15 @@ ggplot(total, aes(x = "", y=valores, fill = tipo)) + geom_col() + coord_polar(th
 nome_orientadores <- sapply(concluidoSC$nome_orientadores, function(x)x)
 orientadores <- list()
 for( i in 1:length(nome_orientadores))
-orientadores <- rbind(orientadores, nome_orientadores[i])
+  orientadores <- rbind(orientadores, nome_orientadores[i])
 nome_orientadores <- sapply(andamentoSC$nome_orientadores, function(x)x)
 for( i in 1:length(nome_orientadores))
-orientadores <- rbind(orientadores, nome_orientadores[i])
-length(unique(orientadores))
+  orientadores <- rbind(orientadores, nome_orientadores[i])
 alunos <- list()
 for( i in 1:length(concluidoSC$nome_aluno))
-alunos <- rbind(alunos, concluidoSC$nome_aluno[i])
+  alunos <- rbind(alunos, concluidoSC$nome_aluno[i])
 for( i in 1:length(andamentoSC$nome_aluno))
-alunos <- rbind(alunos, andamentoSC$nome_aluno[i])
-length(unique(alunos))
+  alunos <- rbind(alunos, andamentoSC$nome_aluno[i])
 total <- data.frame(tipo = c("alunos", "orientadores"), valores= c( length(unique(alunos)),
 length(unique(orientadores))))
 ggplot(total, aes(x = "", y=valores, fill = tipo)) + geom_col() + coord_polar(theta = "y")
@@ -891,22 +872,21 @@ ggplot(total, aes(x = "", y=valores, fill = tipo)) + geom_col() + coord_polar(th
 nome_orientadores <- sapply(concluidoPSC$nome_orientadores, function(x)x)
 orientadores <- list()
 for( i in 1:length(nome_orientadores))
-orientadores <- rbind(orientadores, nome_orientadores[i])
+  orientadores <- rbind(orientadores, nome_orientadores[i])
 nome_orientadores <- sapply(andamentoPSC$nome_orientadores, function(x)x)
 for( i in 1:length(nome_orientadores))
-orientadores <- rbind(orientadores, nome_orientadores[i])
-length(unique(orientadores))
+  orientadores <- rbind(orientadores, nome_orientadores[i])
 alunos <- list()
 for( i in 1:length(concluidoPSC$nome_aluno))
-alunos <- rbind(alunos, concluidoPSC$nome_aluno[i])
+  alunos <- rbind(alunos, concluidoPSC$nome_aluno[i])
 for( i in 1:length(andamentoPSC$nome_aluno))
-alunos <- rbind(alunos, andamentoPSC$nome_aluno[i])
-length(unique(alunos))
+  alunos <- rbind(alunos, andamentoPSC$nome_aluno[i])
+
 total <- data.frame(tipo = c("alunos", "orientadores"), valores= c( length(unique(alunos)),
 length(unique(orientadores))))
 ggplot(total, aes(x = "", y=valores, fill = tipo)) + geom_col() + coord_polar(theta = "y")
 ```
-
+Analisando o numero de professores relacionados ao numero de alunos é possível perceber que tanto em Saúde Coletiva, Ciências Médicas e Profissional Saúde Coletiva possuem muito mais alunos que professores e, comparando os 3, os valores são bem próximos
 
 ```{r warning=FALSE, out.width = '60%'}
 publication_quant <- publication_periodicoCM %>% group_by(ano) %>% dplyr::summarise(quantidade = n())
@@ -936,8 +916,11 @@ geom_line() +
 geom_point() +
 scale_y_continuous(breaks = pretty(publication_quant$quantidade, n =20)) +
 labs(x = "ano", y= "publicações")+
-ggtitle("Quantidade de periodicos por ano Saude Coletiva Proficional")
+ggtitle("Quantidade de periodicos por ano Saude Coletiva Profissional")
 ```
+
+Desde o ano de 2010 o nÚmero de periódicos vem aumentando, embora o valor do ano de 2017 estja bem menor, isso se deve ao fato de que o ano ainda não acabou, não podendo ser levado em consideração para as análises. O fato do crescimento do número de periódicos por ano deve-se ao incentivo por publicações realizada pela UnB. Podemos esperar que estes numeros continuem crescendo pois foi lançado o primeiro edital de auxílio à publicação de pesquisa científica, tecnológica e de inovação de docentes do quadro da Universidade de Brasília pelo DPI. Que visa estimular e viabilizar a divulgação de artigos em anais de eventos ou em periódicos, nacionais e internacionais.
+
 
 ```{r warning=FALSE, out.width = '60%'}
 ggplot(publication_eventoCM, aes(x = classificacao)) +
@@ -958,8 +941,10 @@ ggtitle("Quantidade de publicaçoes por tipo de evento Saude Coletiva")
 ggplot(publication_eventoPSC, aes(x = classificacao)) +
 geom_histogram(stat = "count", fill = "#ff9999") +
 labs(x = "classificação do evento", y= "Quantidade de publicações") +
-ggtitle("Quantidade de publicaçoes por tipo de evento Saude Coletiva Proficional")
+ggtitle("Quantidade de publicaçoes por tipo de evento Saude Coletiva Profissional")
 ```
+
+Pela análise da quantidade de publicações por tipo, percebe-se que há um maior nível de publicações internacionais seguida pelas publicações nacionais, sendo Ciências Médicas a que possui os maiores números.
 
 
 Quanto aos dados de grupo de pesquia, podemos analisar a quantidade de publicaçoes por grupo:
@@ -980,7 +965,7 @@ arrange(desc(`quantidade de publicações`))
 print(x, n=nrow(x))
 ```
 
-No caso dos professores de Saúde Coletiva proficional temos:
+No caso dos professores do programa Profissional Saúde Coletiva temos:
 ```{r}
 x <- prof_producaoPSC %>% mutate(soma_total = rowSums(.[2:9])) %>%
 group_by(`Nome Grupo Pesquisa`) %>%dplyr::summarise( `quantidade de publicações` = sum(soma_total)) %>%
@@ -989,8 +974,12 @@ arrange(desc(`quantidade de publicações`))
 print(x, n=nrow(x))
 ```
 
+O grupo de pesquisa Medicina Tropical é o que possui o maior numero de publicações tanto em Saúde Coletiva quanto em Profissional Saúde Coletiva. Entretanto em Ciências Médicas o grupo Arte e Tecnociência possui o total de 511 parcerias, superando Medicina Tropical nos outros 2 programas.
 
-Alem da quantidade de publicações, tamebm podemos ver as parcerias dos professores
+É interessante reparar que os grupos de pesquisa de Saúde Coletiva e Profissional de Saúde coletiva tem os mesmos valores, podemos concluir que eles são os mesmos para ambos os programas e serão tratados como 1 só. Além disso, em Ciências Médicas há o grupo de Medicina Tropical, entretanto há outros grupos específicos deste programa que possuem valores maiores que os grupos de pesquisa que também são incluidos no programa de Saúde COletiva.
+
+
+Alem da quantidade de publicações, também podemos analisar as parcerias dos professores
 
 ```{r}
 prof_parceriasCM %>% group_by(`Nome Grupo Pesquisa`) %>% dplyr::summarise(N = n()) %>%
@@ -1006,3 +995,9 @@ arrange(desc(N))
 prof_parceriasPSC %>% group_by(`Nome Grupo Pesquisa`) %>% dplyr::summarise(N = n()) %>%
 arrange(desc(N))
 ```
+Novamente o grupo de pesquisa Medicina Tropical é o que possui o maior numero de parcerias tanto em Saúde Coletiva quanto em Profissional Saúde Coletiva. Entretanto em Ciências Médicas o grupo Laboratório de Desenvolvimento de Inovações Terapêuticas possui o total de 13 parcerias, superando Medicina Tropical nos outros 2 programas.
+
+## 6. Implantação.
+
+Finalmente, aplicamos o conhecimento obtido dos resultados do processo nas tomadas de decisão. Ou seja, se realiza o planejamento de implantação dos produtos desenvolvidos (scripts, no caso do executado nesta disciplina) para o ambiente operacional, para seu uso repetitivo, envolvendo atividades de monitoramento e manutenção do sistema (script) desenvolvido. A fase de implantação se da como concluida com a produção e apresentação do relatório final com os resultados do projeto.
+

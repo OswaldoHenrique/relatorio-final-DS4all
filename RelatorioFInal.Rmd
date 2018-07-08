@@ -8,9 +8,9 @@ output:
 ---
 
 
-#Introdução e contextualização
-##Ciências Médicas
-###História
+# Introdução e contextualização
+## Ciências Médicas
+### História
 
 O curso de Medicina da UnB foi criado em 1966, então parte da Faculdade de Ciências Médicas. Com a
 criação de outros cursos na área da saúde, criou-se a Faculdade de Ciências da Saúde, englobando todos os
@@ -34,7 +34,7 @@ ajustes operacionais e um processo seletivo, o curso passou a receber alunos no 
 Desde então o curso tem crescido significativamente, se tornando um polo de formação de mestres e doutores
 no Distrito Federal e na região Centro-Oeste.
 
-###Informações
+### Informações
 
 O Programa de Pós-Graduação em Ciências Médicas da UnB é parte da
 Faculdade de Medicina da UnB e oferece cursos de mestrado e doutorado. O
@@ -89,8 +89,8 @@ quadro professores doutores, possui trinta e um docentes permanentes e
 sete docentes colaboradores, com nenhum docente visitante.
 
 <!-- falta colocar a contextualização -->
-##Saúde Coletiva
-###Informações
+## Saúde Coletiva
+### Informações
 
 A pós graduação em saúde coletiva da UnB começou em 2010 e continua em vigência até hoje. Inicialmente era um programa unicamente de mestrado acadêmico e profissionalizante, hoje o programa conta também com doutorado e pós-doutorado.
 
@@ -114,8 +114,8 @@ facilitar sua implantação. É voltado para as inovações em produtos e proces
 
 Atualmente o programa conta com o total de 23 docentes, abrangendo tanto doutorado quanto mestrado.
 
-#Referencial
-##Ciencia da Ciência
+# Referencial
+## Ciencia da Ciência
 
 O significado de Ciência ainda causa divergências, pode significar:
 conhecimento verdadeiro por oposição ao conhecimento errado ou duvidoso;
@@ -146,7 +146,7 @@ científica em suas mais diversas formas, tornando possível avaliar de
 uma forma mais direta o avanço da produção Científica e de grupos de
 pesquisas.
 
-##Lattes
+## Lattes
 
 O Lattes é uma plataforma do Conselho Nacional de Desenvolvimento
 Científico e Tecnológico (CNPq) criada como uma forma de integrar e
@@ -172,7 +172,7 @@ Plataforma Lattes, por oferecer um sistema de informações de grande
 confiabilidade e abrangência, será de extrema importância para o
 desenvolvimento desse campo no país.
 
-##Estudos de Ciência e Tecnologia
+## Estudos de Ciência e Tecnologia
 
 Os estudos sociais da ciência e da tecnologia, também denominados
 estudos sobre ciência, tecnologia e sociedade (CTS) se dedicam a
@@ -192,7 +192,7 @@ institucionalização de grupos de pesquisa, linhas temáticas em programas
 de pós-graduação, periódicos e congressos especializados e por uma
 multiplicidade de abordagens.
 
-#Metodologia
+# Metodologia
 
 A metodologia Cross Industry Standard Process for Data Mining (CRISP-DM)
 é uma metodologia especificamente desenhada para processos de mineração
@@ -203,13 +203,14 @@ e foi utilizada neste trabalho. As etapas estão demonstradas no Figura 1
 No CRISP-DM o trabalho se dá em um ciclo de seis fases, como se observa
 na figura acima, sendo elas:
 
-## Entendimento do Negócio. 
+## 1. Entendimento do Negócio.
+
 Procura-se entender melhor o que precisamos analisar, buscando detalhes de como as coisas funcionam e como diversos elementos da pesquisa se relacionam. É importante, também, nesta etapa, entender bem os objetivos e as expectativas quanto ao trabalho. No caso deste projeto busca-se entender a necessidade do Sistema Nacional de Pós-Graduação do Brasil de produzir análises de alta qualidade de suas pós-graduações, com baixo custo.
 
 Além disso, é nesta fase que são identificados os recursos e dificuldades que podem influenciar no desenvolvimento do projeto. Tendo sido identificado o tempo especificado para produzir resultados tendo outros trabalhos e outras disciplinas a serem cursadas ao mesmo tempo. Além disso tem o risco de abandono dos integrantes do grupo ou até mesmo a falta de dedicação necessária.
 
+## 2. Coompreensão dos Dados.
 
-## Coompreensão dos Dados. 
 Aqui procuramos entender e descrever todos os dados disponíveis. Assim, é fundamental que se tenha um bom entedimento de quais dados serão relevantes e quais não serão.
 
 Os dados abaixos foram fornecidos pelos professores responsáveis da disciplina. Os dados foram gerados no mês de maio de 2018, e compilam informações entre os anos de 2010 e 2017. Os arquivos estão no formato JSON, e seus atributos iniciais e conteúdos são apresentados a seguir.
@@ -249,58 +250,145 @@ DGP_Producao <- read_excel("unb.DGP.xls", sheet = 5)
 
 ```
 
-Tanto o arquivo "PPG Ciências Medicas.profile.json", "PPG Profissional Saúde Coletiva.profile.json" e "PPG Saúde Coletiva.profile.json" apresentam o perfil dos docentes vinculados a programas das áreas de Ciências Médicas, e de Saude Coletiva profissional e Saúde Coletiva.
+Tanto o arquivo "PPG Ciências Medicas.profile.json", "PPG Profissional Saúde Coletiva.profile.json" e "PPG Saúde Coletiva.profile.json" apresentam o perfil dos docentes vinculados a programas das áreas de Ciências Médicas, Saúde Coletiva Profissional e Saúde Coletiva, respectivamente.
 
-Já os arquivos "PPG Ciências Medicas.advise.json", "PPG Profissional Saúde Coletiva.advise.json" e "PPG Saúde Coletiva.advise.json" apresenta dados sobre as orientações de mestrado e doutorado feitas por todos os docentes vinculados a programas de pós-graduação das áreas de Ciências Médicas, e de Saude Coletiva profissional e Saúde Coletiva.
+Já os arquivos "PPG Ciências Medicas.advise.json", "PPG Profissional Saúde Coletiva.advise.json" e "PPG Saúde Coletiva.advise.json" apresentam dados sobre as orientações de mestrado e doutorado feitas por todos os docentes vinculados a programas de pós-graduação das áreas de Ciências Médicas, Saúde Coletiva Profissional e Saúde Coletiva, respectivamente.
 
-Os arquivos "PPG Ciências Medicas.publication.json", "PPG Profissional Saúde Coletiva.publication.json" e "PPG Saúde Coletiva.publication.json" apresenta dados sobre a produção bibliográfica gerada por todos os docentes vinculados a programas das áreas de Ciências Médicas, e de Saude Coletiva profissional e Saúde Coletiva.
+Finalmente, os arquivos "PPG Ciências Medicas.publication.json", "PPG Profissional Saúde Coletiva.publication.json" e "PPG Saúde Coletiva.publication.json" apresentam dados sobre a produção bibliográfica gerada por todos os docentes vinculados a programas das áreas de Ciências Médicas, Saude Coletiva Profissional e Saúde Coletiva, respectivamente.
 
-### Descrição dos dados
+### Descrição e análise exploratória dos dados
+
 A análise foi realizada no RStudio utilizando a linguagem, para leitura e interpretação dos dados serão usados as seguintes bibliotecas abaixo.
 
 
 
-#### análise dos perfils
+#### Perfis
 
-O arquivo o arquivo "PPG Ciências Medicas.profile.json", "PPG Profissional Saúde Coletiva.profile.json" e "PPG Saúde Coletiva.profile.json", que contém dados que caracterizam o perfil profissional de todos os docentes do grupo sob análise, tem as caracteristicas do nome, as áreas de atuação, endereço profissional, as produções bibliográficas, as orientações acadêmicas e a senioridade.
+Os arquivos "PPG Ciências Medicas.profile.json", "PPG Profissional Saúde Coletiva.profile.json" e "PPG Saúde Coletiva.profile.json" contém dados que caracterizam o perfil profissional de todos os docentes do grupo sob análise. Com isso temos o nome, as áreas de atuação, endereço profissional, as produções bibliográficas, as orientações acadêmicas e a senioridade de cada professor. Todos os três arquivos tem a mesma estrutura, diferenciando-se apenas nos docentes presentes.
+
 ```{r}
 summary(perfisCM$`0056945699042193`)
 summary(perfisPSC$`0153088935731412`)
 summary(perfisSC$`0153088935731412`)
 ```
 
-Existindo um total de 38 docentes da Ciências Médicas, 27 docentes do Profissional de Saúde Coletiva e 24 docentes de Saúde Coletiva.
+Nos arquivos, encontramos um total de 38 docentes da Ciências Médicas, 27 docentes do Profissional de Saúde Coletiva e 24 docentes de Saúde Coletiva.
 
 ```{r}
+# Numero de docentes
 length(perfisCM)
 length(perfisPSC)
 length(perfisSC)
 ```
 
-Esses dados terão potencial para responder às questões de data mining? O que é possível gerar a partir desses dados, para o conjunto dos 1592 docentes da UnB? A fim de compreender a relevância dos dados para a avaliação da produção acadêmica nas pós-graduações brasileiras pode-se recorrer a trabalhos como os
-seguintes:
+Podemos notar também que temos 5 grandes áreas no programa de Ciências Médicas, 8 no de Saúde Coletiva Profissional e 9 no de Saúde Coletiva Profissional. Para áreas, temos
+22, 24 e 24, respectivamente. Já para sub-áreas, temos 75, 64 e 49, respectivamente. Finalmente, para especialidades, temos 40, 21 e 21, respectivamente.
 
-• Leite (2018) apresenta, em suas “Considerações básicas sobre a Avaliação do Sistema Nacional de
-Pós-Graduação”, o conjunto dos itens que são tópicos de avaliação das pós-graduações pela CAPES, e
-que envolvem, entre outros:
+```{r warning=FALSE}
+# Quantidade de areas, sub-areas e especialidades
+data.frame(Reduce(rbind, perfisCM)) %>%
+  unnest(areas_de_atuacao) %>%
+  summarise(qts_grande_areas = n_distinct(grande_area),
+            qtd_areas = n_distinct(area),
+            qtd_sub_areas = n_distinct(sub_area),
+            qtd_especialidades = n_distinct(especialidade))
 
-  – Avaliação do corpo docente, com 20% a 30% de peso na avaliação total do programa, a depender do seu tipo. Analisando-se de forma mais detalhada os critérios de avaliação do corpo docente, indicados por Leite, o que é possível gerar com base nos dados disponíveis em unb.prof? Há dados que permitam identificar o perfil do docente, como proposto pela CAPES, inclusive no documento de área específica na qual atua o pesquisador? Que outros aspectos relevantes para a CAPES podem ser levantados com base nos dados dessa fonte?
+data.frame(Reduce(rbind, perfisPSC)) %>%
+  unnest(areas_de_atuacao) %>%
+  summarise(qts_grande_areas = n_distinct(grande_area),
+            qtd_areas = n_distinct(area),
+            qtd_sub_areas = n_distinct(sub_area),
+            qtd_especialidades = n_distinct(especialidade))
 
-  – Avaliação do corpo discente, Teses e dissertações, com 30% a 20% de peso na avaliação total do programa, a depender de seu tipo. Os dados sobre orientação permitem fazer quais tipos de avaliações do corpo discente?
-  
-  – Avaliação da produção intelectual, com 40% de peso na avaliação total. Qual a relevância dos dados em unb.prof para essa avaliação? Que outros arquivos podem melhor subsidiar essa avaliação? 
-  
-• Em busca de considerar outros fatores relevantes para a avaliação da pós-graduação, não considerados no modelo da CAPES, pode-se recorrer ao trabalho de Kalpazidou Schmidt e Graversen (2018), que apresentam um conjunto de fatores persistentes que facilitam a existência de ambientes de pesquisa inovadores e dinâmicos, dentre os quais se destaca:
+data.frame(Reduce(rbind, perfisSC)) %>%
+  unnest(areas_de_atuacao) %>%
+  summarise(qts_grande_areas = n_distinct(grande_area),
+            qtd_areas = n_distinct(area),
+            qtd_sub_areas = n_distinct(sub_area),
+            qtd_especialidades = n_distinct(especialidade))
+```
 
-  – Atividade em pesquisas com elevado grau de impacto social;
-  
-  – Promoção de elevado grau de autonomia individual, tanto do ponto de vista teórico quanto metodológico;
-  
-  – Possuem um bom clima de trabalho, baseado no trabalho em times;
-  
-  – São internacioinalmente bem conhecidas etc
+Em todos os três programas temos que ciências da saúde é a grande área de maior prevalência. Em ciências médicas, podemos ver ainda uma grande concentração na grande área de ciências biológicas.
 
-#### análise das orientações
+```{r warning=FALSE}
+# Quantidade de pessoas por grande area
+data.frame(Reduce(rbind, perfisCM)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(grande_area) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+
+data.frame(Reduce(rbind, perfisPSC)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(grande_area) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+
+data.frame(Reduce(rbind, perfisSC)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(grande_area) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+```
+
+Em todos os arquivos, temos que a área de maior prevalência é a do curso principal do programa, Medicina no caso de Ciências Médicas e Saúde Coletiva nos outros dois.
+
+```{r warning=FALSE}
+# Quantidade de pessoas por area
+data.frame(Reduce(rbind, perfisCM)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(area) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+
+data.frame(Reduce(rbind, perfisPSC)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(area) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+
+data.frame(Reduce(rbind, perfisSC)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(area) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+```
+
+Nas sub-áreas, temos que nos dois programas da Saúde Coletiva a opção mais comum é não ter sub-área, enquanto que essa opção é a segunda em Ciências Médicas, perdendo apenas para Clínica Médica. Em todos os casos, as três primeiras opções são bem mais populares do que as demais.
+
+```{r warning=FALSE}
+# Quantidade de pessoas por sub-area
+data.frame(Reduce(rbind, perfisCM)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(sub_area) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+
+data.frame(Reduce(rbind, perfisPSC)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(sub_area) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+
+data.frame(Reduce(rbind, perfisSC)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(sub_area) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+```
+
+Para as especialidades, temos que a esmagadora maioria dos casos não possuem especialiade e que as especialidades que existem aparecem poucas vezes.
+
+```{r warning=FALSE}
+# Quantidade de pessoas por especialidades
+data.frame(Reduce(rbind, perfisCM)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(especialidade) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+
+data.frame(Reduce(rbind, perfisPSC)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(especialidade) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+
+data.frame(Reduce(rbind, perfisSC)) %>%
+  unnest(areas_de_atuacao) %>%
+  group_by(especialidade) %>%
+  tally() %>% arrange(desc(n)) %>% na_if("")
+```
+
+#### Orientações
 
 ```{r}
 names(adviseCM)
@@ -412,7 +500,7 @@ dim(concluidoPSC)
 ```
 
 
-#### análise das publicações
+#### Publicações
 
 As publicações são divididas em 7 tipos(periódicos, livros, capítulos de livros, jornais, eventos, artigos, demais), todos esses tipos estavam agrupados por ano. 
 ```{r}
@@ -507,7 +595,7 @@ nrow(publication_demaisPSC)
 ```
 
 
-## Preparação dos Dados. 
+## 3. Preparação dos Dados. 
 Uma vez que exista um bom entendimento dos dados, precisamos preparar esses dados para a análise, definindo em qual formato esses dados serão mais úteis, bem como escolhendo quais dados são relevantes para a análise. Nesta etapa é preciso selecionar e escolher os atributos dos dados que serão trabalhados. Tendo sido selecionado as base de dados BDTD, DGP e Oasis para complementar os dados obtidos do Lattes sobre Saude Coletiva. Sendo sido realizado a integração dessas bases, fazendo merges e aggregations com as funções inner_join(), rbind().
 
 Na base de dados do DPG existem informações sobre as linhas de pesquisa, as parcerias, os participantes, os numeros de participação e grupos de pesquisa.
@@ -577,7 +665,7 @@ by = "Token Grupo Pesquisa")
 ```
 
 
-## Modelagem.
+## 4. Modelagem.
 
 Nesta fase são selecionadas e aplicadas as técnicas de mineração de dados mais apropriadas, dependendo dos objetivos identificados na primeira fase. Ou seja, foi realizada a escolha, contrução e execução do modelo de modelagem utilizado.
 
@@ -624,11 +712,11 @@ filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`))
 
 
 
-## Avaliação.
+## 5. Avaliação.
 
 A quinta fase pede o acompanhamento dos resultados objetivos e a avaliação da aplicabilidade confiável dos insights e conhecimentos obtidos. Ocorrendo um processo de revisão e definição para os proximos passos, verificando se existem questões relacionadas à organização que não foram suficientemente abordadas. Deve-se refletir se o uso repetido do modelo criado pode trazer algum “efeito colateral” para a organização.
 
-##Implantação.
+## 6. Implantação.
 
 Finalmente, aplicamos o conhecimento obtido dos resultados do processo nas tomadas de decisão. Ou seja, se realiza o planejamento de implantação dos produtos desenvolvidos (scripts, no caso do executado nesta disciplina) para o ambiente operacional, para seu uso repetitivo, envolvendo atividades de monitoramento e manutenção do sistema (script) desenvolvido. A fase de implantação se da como concluida com a produção e apresentação do relatório final com os resultados do projeto.
 

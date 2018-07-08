@@ -733,7 +733,7 @@ head(linhas_pequisa_quantPSC)
 
 
 
-Para isso foi armazenado o token de pesquisa de cada professor
+Alem de agrupar a linha de pesquisa também foi aplicado um filtro para so trabalharmos com os frupos de pesquisa que os professores participam. Para isso foi armazenado o token de pesquisa de cada professor:
 
 ```{r}
 token_profCM <-DGP_Participantes %>%
@@ -749,26 +749,32 @@ filter(is.element(`Nome Participante`, nomes_id_tblPSC$name)) %>%
 select(`Token Grupo Pesquisa`)
 ```
 
-Em seguida, foram selecionado os grupos em que os professores trabalharam
+Em seguida, foram selecionado os grupos em que os professores trabalharam e agrupados pelo nome do grupo de pesquisa
 
 ```{r}
 prof_producaoCM <- DGP_Producao_Grupos %>% 
-filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`))
-
+filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`)) %>%
+group_by(`Nome Grupo Pesquisa`)
+  
 prof_producaoSC <- DGP_Producao_Grupos %>% 
-filter(is.element(`Token Grupo Pesquisa`,token_profSC$`Token Grupo Pesquisa`))
+filter(is.element(`Token Grupo Pesquisa`,token_profSC$`Token Grupo Pesquisa`)) %>%
+group_by(`Nome Grupo Pesquisa`)
 
 prof_producaoPSC <- DGP_Producao_Grupos %>% 
-filter(is.element(`Token Grupo Pesquisa`,token_profPSC$`Token Grupo Pesquisa`))
+filter(is.element(`Token Grupo Pesquisa`,token_profPSC$`Token Grupo Pesquisa`)) %>%
+group_by(`Nome Grupo Pesquisa`)
 
 prof_parceriasCM <- DGP_Parcerias_Grupos %>% 
-filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`))
+filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`)) %>%
+group_by(`Nome Grupo Pesquisa`)
 
-prof_parceriasCM <- DGP_Parcerias_Grupos %>% 
-filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`))
+prof_parceriasSC <- DGP_Parcerias_Grupos %>% 
+filter(is.element(`Token Grupo Pesquisa`,token_profSC$`Token Grupo Pesquisa`)) %>%
+group_by(`Nome Grupo Pesquisa`)
 
-prof_parceriasCM <- DGP_Parcerias_Grupos %>% 
-filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`))
+prof_parceriasPSC <- DGP_Parcerias_Grupos %>% 
+filter(is.element(`Token Grupo Pesquisa`,token_profPSC$`Token Grupo Pesquisa`)) %>%
+group_by(`Nome Grupo Pesquisa`)
 
 ```
 
@@ -783,7 +789,73 @@ A quinta fase pede o acompanhamento dos resultados objetivos e a avaliação da 
 Finalmente, aplicamos o conhecimento obtido dos resultados do processo nas tomadas de decisão. Ou seja, se realiza o planejamento de implantação dos produtos desenvolvidos (scripts, no caso do executado nesta disciplina) para o ambiente operacional, para seu uso repetitivo, envolvendo atividades de monitoramento e manutenção do sistema (script) desenvolvido. A fase de implantação se da como concluida com a produção e apresentação do relatório final com os resultados do projeto.
 
 
+Com os dados prontos para serem analisados podemos começar a mostrar os dados
 
 
 
 
+
+```{r}
+publication_quant <- publication_periodicoCM %>% group_by(ano) %>% dplyr::summarise(quantidade = n())
+ggplot(publication_quant, aes(x = ano, y = quantidade, group = 1))+
+geom_line() +
+geom_point() +
+scale_y_continuous(breaks = pretty(publication_quant$quantidade, n = 10)) +
+expand_limits(y = 0) +
+labs(x = "ano", y= "publicações")+
+ggtitle("Quantidade de periodicos por ano")
+```
+
+
+
+```{r}
+ggplot(publication_eventoCM, aes(x = classificacao)) +
+geom_histogram(stat = "count", fill = "#ff9999") +
+labs(x = "classificação do evento", y= "Quantidade de publicações") +
+ggtitle("Quantidade de publicaçoes agrupadas por tipo de evento")
+```
+
+Quanto aos dados de grupo de pesquia, podemos analisar a quantidade de publicaçoes por grupo:
+No caso dos professores de Ciencias Médicas temos:
+```{r}
+x <- prof_producaoCM %>% mutate(soma_total = rowSums(.[2:9])) %>%
+group_by(`Nome Grupo Pesquisa`) %>%dplyr::summarise( `quantidade de publicações` = sum(soma_total)) %>%
+arrange(desc(`quantidade de publicações`))
+
+print(x, n=nrow(x))
+```
+No caso dos professores de Saúde Coletiva temos:
+```{r}
+x <- prof_producaoSC %>% mutate(soma_total = rowSums(.[2:9])) %>%
+group_by(`Nome Grupo Pesquisa`) %>%dplyr::summarise( `quantidade de publicações` = sum(soma_total)) %>%
+arrange(desc(`quantidade de publicações`))
+
+print(x, n=nrow(x))
+```
+
+No caso dos professores de Saúde Coletiva proficional temos:
+```{r}
+x <- prof_producaoPSC %>% mutate(soma_total = rowSums(.[2:9])) %>%
+group_by(`Nome Grupo Pesquisa`) %>%dplyr::summarise( `quantidade de publicações` = sum(soma_total)) %>%
+arrange(desc(`quantidade de publicações`))
+
+print(x, n=nrow(x))
+```
+
+
+Alem da quantidade de publicações, tamebm podemos ver as parcerias dos professores
+
+```{r}
+prof_parceriasCM %>% group_by(`Nome Grupo Pesquisa`) %>% dplyr::summarise(N = n()) %>%
+arrange(desc(N))
+```
+
+```{r}
+prof_parceriasSC %>% group_by(`Nome Grupo Pesquisa`) %>% dplyr::summarise(N = n()) %>%
+arrange(desc(N))
+```
+
+```{r}
+prof_parceriasPSC %>% group_by(`Nome Grupo Pesquisa`) %>% dplyr::summarise(N = n()) %>%
+arrange(desc(N))
+```

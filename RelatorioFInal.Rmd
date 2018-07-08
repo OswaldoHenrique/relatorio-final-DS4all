@@ -214,6 +214,17 @@ Aqui procuramos entender e descrever todos os dados disponíveis. Assim, é fund
 
 Os dados abaixos foram fornecidos pelos professores responsáveis da disciplina. Os dados foram gerados no mês de maio de 2018, e compilam informações entre os anos de 2010 e 2017. Os arquivos estão no formato JSON, e seus atributos iniciais e conteúdos são apresentados a seguir.
 
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(readxl)
+library(jsonlite)
+library(readr)
+library(ggplot2)
+library(plyr)
+library(tidyr)
+library(stringr)
+```
+
 ```{r}
 perfisCM <- fromJSON("PPG Ciências Medicas.profile.json")
 perfisPSC <- fromJSON("PPG Profissional Saúde Coletiva.profile.json")
@@ -246,16 +257,7 @@ Os arquivos "PPG Ciências Medicas.publication.json", "PPG Profissional Saúde C
 
 ### Descrição dos dados
 A análise foi realizada no RStudio utilizando a linguagem, para leitura e interpretação dos dados serão usados as seguintes bibliotecas abaixo.
-```{r echo=FALSE, warning=FALSE, message=FALSE}
-library(dplyr)
-library(readxl)
-library(jsonlite)
-library(readr)
-library(ggplot2)
-library(plyr)
-library(tidyr)
-library(stringr)
-```
+
 
 
 #### análise dos perfils
@@ -462,6 +464,49 @@ names(publication_eventoPSC)
 names(publication_eventoSC)
 ```
 
+Também é interesante reparar na quantidade de publicações cada programa possui.
+
+Para o programa de Ciencias Medicas temos:
+
+```{r}
+
+nrow(publication_periodicoCM) 
+nrow(publication_livroCM)
+nrow(publication_cap_livroCM)
+nrow(publication_jornaisCM)
+nrow(publication_eventoCM)
+nrow(publication_artigosCM)
+nrow(publication_demaisCM)
+
+```
+
+Para o programa de Saude coletiva temos:
+```{r}
+
+nrow(publication_periodicoSC) 
+nrow(publication_livroSC)
+nrow(publication_cap_livroSC)
+nrow(publication_jornaisSC)
+nrow(publication_eventoSC)
+nrow(publication_artigosSC)
+nrow(publication_demaisSC)
+
+```
+Para o programa de Saude coletiva Proficional temos:
+
+```{r}
+
+nrow(publication_periodicoPSC) 
+nrow(publication_livroPSC)
+nrow(publication_cap_livroPSC)
+nrow(publication_jornaisPSC)
+nrow(publication_eventoPSC)
+nrow(publication_artigosPSC)
+nrow(publication_demaisPSC)
+
+```
+
+
 ## Preparação dos Dados. 
 Uma vez que exista um bom entendimento dos dados, precisamos preparar esses dados para a análise, definindo em qual formato esses dados serão mais úteis, bem como escolhendo quais dados são relevantes para a análise. Nesta etapa é preciso selecionar e escolher os atributos dos dados que serão trabalhados. Tendo sido selecionado as base de dados BDTD, DGP e Oasis para complementar os dados obtidos do Lattes sobre Saude Coletiva. Sendo sido realizado a integração dessas bases, fazendo merges e aggregations com as funções inner_join(), rbind().
 
@@ -471,10 +516,113 @@ excel_sheets("unb.DGP.xls")
 ```
 <!-- Colocar merge com a tabela excel_sheets -->
 
+Para uma futura junção entre as bases do Lattes com as outras foi criada uma tabela de cada uma das bases de dados contendo o nome e o id lattes dos professores
+
+```{r warning=FALSE}
+perfis_tblCM <- data.frame(Reduce(rbind, perfisCM)) #carega lista de perfis
+idsCM <- names(perfisCM) # carrega os ids do lattes de cada professor
+nomes_id_tblCM <- perfis_tblCM%>%mutate(ids = idsCM) %>%
+select(name = nome, id_lates = ids) %>% as_tibble() # junta o nome e id
+```
+
+```{r warning=FALSE}
+perfis_tblSC <- data.frame(Reduce(rbind, perfisSC)) #carega lista de perfis
+idsSC <- names(perfisSC) # carrega os ids do lattes de cada professor
+nomes_id_tblSC <- perfis_tblSC%>%mutate(ids = idsSC) %>%
+select(name = nome, id_lates = ids) %>% as_tibble() # junta o nome e id
+```
+
+```{r warning=FALSE}
+perfis_tblPSC <- data.frame(Reduce(rbind, perfisPSC)) #carega lista de perfis
+idsPSC <- names(perfisPSC) # carrega os ids do lattes de cada professor
+nomes_id_tblPSC <- perfis_tblPSC%>%mutate(ids = idsPSC) %>%
+select(name = nome, id_lates = ids) %>% as_tibble() # junta o nome e id
+```
+
+Em seguida, nos dados do DGP, foi aplicado um filtro para trabalharmos somente com os valores mais recentes, isso é, o do ano de 2016 
+```{r}
+DGP_Producao <- DGP_Producao %>% 
+filter(`Ano Censo` == 2016) %>%
+select(-`Ano Censo`)
+
+DGP_Grupos <- DGP_Grupos %>% 
+filter(`Ano Censo` == 2016) %>%
+select(-`Ano Censo`)
+
+DGP_Participantes <- DGP_Participantes %>% 
+filter(`Ano Censo` == 2016) %>%
+select(-`Ano Censo`)
+
+DGP_Parcerias <- DGP_Parcerias %>% 
+filter(`Ano Censo` == 2016) %>%
+select(-`Ano Censo`)
+
+DGP_Pesquisa <- DGP_Pesquisa %>% 
+filter(`Ano Censo` == 2016) %>%
+select(-`Ano Censo`)
+```
+
+
+Com o filtro de ano aplicado podemos agora juntar os dados dos grupos de pesquisas, que estão armazenados em DGP_Grupos, com os outros, assim, aplicamos um left join com as produçoes, parcerias e com os participantes.
+
+```{r}
+DGP_Producao_Grupos <- left_join( DGP_Producao, DGP_Grupos,
+by = "Token Grupo Pesquisa")
+
+DGP_Parcerias_Grupos <- left_join( DGP_Parcerias, DGP_Grupos,
+by = "Token Grupo Pesquisa")
+
+DGP_Participantes_Grupos <- left_join( DGP_Participantes, DGP_Grupos,
+by = "Token Grupo Pesquisa")
+```
+
 
 ## Modelagem.
 
 Nesta fase são selecionadas e aplicadas as técnicas de mineração de dados mais apropriadas, dependendo dos objetivos identificados na primeira fase. Ou seja, foi realizada a escolha, contrução e execução do modelo de modelagem utilizado.
+
+Assim, foi aplicado um filtro dos para trabalharmos somente com os grupos de pesquisa que possuiem professores dos programas de pos graduação de Saude coletiva e Ciencias Medicas.
+
+Para isso foi armazenado o token de pesquisa de cada professor
+
+```{r}
+token_profCM <-DGP_Participantes %>%
+filter(is.element(`Nome Participante`, nomes_id_tblCM$name)) %>%
+select(`Token Grupo Pesquisa`)
+
+token_profSC <-DGP_Participantes %>%
+filter(is.element(`Nome Participante`, nomes_id_tblSC$name)) %>%
+select(`Token Grupo Pesquisa`)
+
+token_profPSC <-DGP_Participantes %>%
+filter(is.element(`Nome Participante`, nomes_id_tblPSC$name)) %>%
+select(`Token Grupo Pesquisa`)
+```
+
+Em seguida, foram selecionado os grupos em que os professores trabalharam
+
+```{r}
+prof_producaoCM <- DGP_Producao_Grupos %>% 
+filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`))
+
+prof_producaoSC <- DGP_Producao_Grupos %>% 
+filter(is.element(`Token Grupo Pesquisa`,token_profSC$`Token Grupo Pesquisa`))
+
+prof_producaoPSC <- DGP_Producao_Grupos %>% 
+filter(is.element(`Token Grupo Pesquisa`,token_profPSC$`Token Grupo Pesquisa`))
+
+prof_parceriasCM <- DGP_Parcerias_Grupos %>% 
+filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`))
+
+prof_parceriasCM <- DGP_Parcerias_Grupos %>% 
+filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`))
+
+prof_parceriasCM <- DGP_Parcerias_Grupos %>% 
+filter(is.element(`Token Grupo Pesquisa`,token_profCM$`Token Grupo Pesquisa`))
+
+```
+
+
 
 ## Avaliação.
 

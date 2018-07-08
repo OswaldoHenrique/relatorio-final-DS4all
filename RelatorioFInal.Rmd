@@ -792,28 +792,175 @@ Finalmente, aplicamos o conhecimento obtido dos resultados do processo nas tomad
 Com os dados prontos para serem analisados podemos começar a mostrar os dados
 
 
+```{r warning=FALSE, out.width = '60%'}
+data.frame(Reduce(rbind, perfisCM)) %>%
+unnest(areas_de_atuacao) %>%
+group_by(area, sub_area, especialidade) %>%
+dplyr::summarise(qtd = n()) %>%
+filter(sub_area %in% c("Clínica Médica", "Cirurgia")) %>%
+na_if("") %>%
+arrange(desc(qtd)) %>%
+ggplot(aes(reorder(especialidade, qtd, fill = area), qtd))+
+geom_bar(stat = "identity")+
+coord_flip()+
+facet_grid(sub_area~., scales = "free")+
+labs(title ="Especialidades em Cirurgia e Clínica Médica",
+x = "Especialidade", y = "Qtd de professores")
+```
+
+
+```{r warning=FALSE, out.width = '60%'}
+data.frame(Reduce(rbind, perfisPSC)) %>%
+unnest(areas_de_atuacao) %>%
+group_by(area, sub_area, especialidade) %>%
+dplyr::summarise(qtd = n()) %>%
+filter(sub_area %in% c("Saúde Pública", "Epidemiologia")) %>%
+na_if("") %>%
+arrange(desc(qtd)) %>%
+ggplot(aes(reorder(especialidade, qtd, fill = area), qtd))+
+geom_bar(stat = "identity")+
+coord_flip()+
+facet_grid(sub_area~., scales = "free")+
+labs(title ="Especialidades em Cirurgia e Clínica Médica",
+x = "Especialidade", y = "Qtd de professores")
+```
+
+```{r warning=FALSE, out.width = '60%'}
+
+data.frame(Reduce(rbind, perfisSC)) %>%
+unnest(areas_de_atuacao) %>%
+group_by(area, sub_area, especialidade) %>%
+dplyr::summarise(qtd = n()) %>%
+filter(sub_area %in% c("Saúde Pública", "Epidemiologia")) %>%
+na_if("") %>%
+arrange(desc(qtd)) %>%
+ggplot(aes(reorder(especialidade, qtd, fill = area), qtd))+
+geom_bar(stat = "identity")+
+coord_flip()+
+facet_grid(sub_area~., scales = "free")+
+labs(title ="Especialidades em Cirurgia e Clínica Médica",
+x = "Especialidade", y = "Qtd de professores")
+```
+
+proporçao orientadores e alunos
+
+```{r warning=FALSE, out.width = '60%'}
+nome_orientadores <- sapply(concluidoCM$nome_orientadores, function(x)x)
+orientadores <- list()
+for( i in 1:length(nome_orientadores))
+orientadores <- rbind(orientadores, nome_orientadores[i])
+nome_orientadores <- sapply(andamentoCM$nome_orientadores, function(x)x)
+for( i in 1:length(nome_orientadores))
+orientadores <- rbind(orientadores, nome_orientadores[i])
+length(unique(orientadores))
+alunos <- list()
+for( i in 1:length(concluidoCM$nome_aluno))
+alunos <- rbind(alunos, concluidoCM$nome_aluno[i])
+for( i in 1:length(andamentoCM$nome_aluno))
+alunos <- rbind(alunos, andamentoCM$nome_aluno[i])
+length(unique(alunos))
+total <- data.frame(tipo = c("alunos", "orientadores"), valores= c( length(unique(alunos)),
+length(unique(orientadores))))
+ggplot(total, aes(x = "", y=valores, fill = tipo)) + geom_col() + coord_polar(theta = "y")
+```
 
 
 
-```{r}
+```{r warning=FALSE, out.width = '60%'}
+nome_orientadores <- sapply(concluidoSC$nome_orientadores, function(x)x)
+orientadores <- list()
+for( i in 1:length(nome_orientadores))
+orientadores <- rbind(orientadores, nome_orientadores[i])
+nome_orientadores <- sapply(andamentoSC$nome_orientadores, function(x)x)
+for( i in 1:length(nome_orientadores))
+orientadores <- rbind(orientadores, nome_orientadores[i])
+length(unique(orientadores))
+alunos <- list()
+for( i in 1:length(concluidoSC$nome_aluno))
+alunos <- rbind(alunos, concluidoSC$nome_aluno[i])
+for( i in 1:length(andamentoSC$nome_aluno))
+alunos <- rbind(alunos, andamentoSC$nome_aluno[i])
+length(unique(alunos))
+total <- data.frame(tipo = c("alunos", "orientadores"), valores= c( length(unique(alunos)),
+length(unique(orientadores))))
+ggplot(total, aes(x = "", y=valores, fill = tipo)) + geom_col() + coord_polar(theta = "y")
+```
+
+
+```{r warning=FALSE, out.width = '60%'}
+nome_orientadores <- sapply(concluidoPSC$nome_orientadores, function(x)x)
+orientadores <- list()
+for( i in 1:length(nome_orientadores))
+orientadores <- rbind(orientadores, nome_orientadores[i])
+nome_orientadores <- sapply(andamentoPSC$nome_orientadores, function(x)x)
+for( i in 1:length(nome_orientadores))
+orientadores <- rbind(orientadores, nome_orientadores[i])
+length(unique(orientadores))
+alunos <- list()
+for( i in 1:length(concluidoPSC$nome_aluno))
+alunos <- rbind(alunos, concluidoPSC$nome_aluno[i])
+for( i in 1:length(andamentoPSC$nome_aluno))
+alunos <- rbind(alunos, andamentoPSC$nome_aluno[i])
+length(unique(alunos))
+total <- data.frame(tipo = c("alunos", "orientadores"), valores= c( length(unique(alunos)),
+length(unique(orientadores))))
+ggplot(total, aes(x = "", y=valores, fill = tipo)) + geom_col() + coord_polar(theta = "y")
+```
+
+
+```{r warning=FALSE, out.width = '60%'}
 publication_quant <- publication_periodicoCM %>% group_by(ano) %>% dplyr::summarise(quantidade = n())
 ggplot(publication_quant, aes(x = ano, y = quantidade, group = 1))+
 geom_line() +
 geom_point() +
-scale_y_continuous(breaks = pretty(publication_quant$quantidade, n = 10)) +
-expand_limits(y = 0) +
+scale_y_continuous(breaks = pretty(publication_quant$quantidade, n = 20)) +
 labs(x = "ano", y= "publicações")+
-ggtitle("Quantidade de periodicos por ano")
+ggtitle("Quantidade de periodicos por ano Ciencias Medicas")
+```
+
+```{r warning=FALSE, out.width = '60%'}
+publication_quant <- publication_periodicoSC %>% group_by(ano) %>% dplyr::summarise(quantidade = n())
+ggplot(publication_quant, aes(x = ano, y = quantidade, group = 1))+
+geom_line() +
+geom_point() +
+scale_y_continuous(breaks = pretty(publication_quant$quantidade, n =20)) +
+labs(x = "ano", y= "publicações")+
+ggtitle("Quantidade de periodicos por ano Saude Coletiva")
 ```
 
 
+```{r warning=FALSE, out.width = '60%'}
+publication_quant <- publication_periodicoPSC %>% group_by(ano) %>% dplyr::summarise(quantidade = n())
+ggplot(publication_quant, aes(x = ano, y = quantidade, group = 1))+
+geom_line() +
+geom_point() +
+scale_y_continuous(breaks = pretty(publication_quant$quantidade, n =20)) +
+labs(x = "ano", y= "publicações")+
+ggtitle("Quantidade de periodicos por ano Saude Coletiva Proficional")
+```
 
-```{r}
+```{r warning=FALSE, out.width = '60%'}
 ggplot(publication_eventoCM, aes(x = classificacao)) +
 geom_histogram(stat = "count", fill = "#ff9999") +
 labs(x = "classificação do evento", y= "Quantidade de publicações") +
-ggtitle("Quantidade de publicaçoes agrupadas por tipo de evento")
+ggtitle("Quantidade de publicaçoes por tipo de evento Ciencias Medicas")
 ```
+
+
+```{r warning=FALSE, out.width = '60%'}
+ggplot(publication_eventoSC, aes(x = classificacao)) +
+geom_histogram(stat = "count", fill = "#ff9999") +
+labs(x = "classificação do evento", y= "Quantidade de publicações") +
+ggtitle("Quantidade de publicaçoes por tipo de evento Saude Coletiva")
+```
+
+```{r warning=FALSE, out.width = '60%'}
+ggplot(publication_eventoPSC, aes(x = classificacao)) +
+geom_histogram(stat = "count", fill = "#ff9999") +
+labs(x = "classificação do evento", y= "Quantidade de publicações") +
+ggtitle("Quantidade de publicaçoes por tipo de evento Saude Coletiva Proficional")
+```
+
 
 Quanto aos dados de grupo de pesquia, podemos analisar a quantidade de publicaçoes por grupo:
 No caso dos professores de Ciencias Médicas temos:

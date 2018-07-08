@@ -598,34 +598,62 @@ nrow(publication_demaisPSC)
 ## 3. Preparação dos Dados. 
 Uma vez que exista um bom entendimento dos dados, precisamos preparar esses dados para a análise, definindo em qual formato esses dados serão mais úteis, bem como escolhendo quais dados são relevantes para a análise. Nesta etapa é preciso selecionar e escolher os atributos dos dados que serão trabalhados. Tendo sido selecionado as base de dados BDTD, DGP e Oasis para complementar os dados obtidos do Lattes sobre Saude Coletiva. Sendo sido realizado a integração dessas bases, fazendo merges e aggregations com as funções inner_join(), rbind().
 
-Na base de dados do DPG existem informações sobre as linhas de pesquisa, as parcerias, os participantes, os numeros de participação e grupos de pesquisa.
+Na base de dados do DGP existem informações sobre as linhas de pesquisa, as parcerias, os participantes, os numeros de participação e grupos de pesquisa.
 ```{r}
 excel_sheets("unb.DGP.xls")
 ```
+
+Para a análise detalhada foram utilizadas as tabelas de participantes e de pesquisa e colocadas em uma única tabela contendo os principais dados de todas estas. Alem disso como as tabelas de pesquisas de andamento e concluido estavam separadas, foi utilizado um rbind para uní-las, colocando todas as informações importantes juntas.
+```{r}
+Participantes_concluidoCM <- inner_join(DGP_Participantes, concluidoCM, by = c("Nome Participante" = "nome_aluno"))
+Participantes_andamentoCM <- inner_join(DGP_Participantes, andamentoCM, by = c("Nome Participante" = "nome_aluno"))
+pesquisa_andamentoCM <- inner_join(Participantes_andamentoCM, DGP_Pesquisa, by = "Token Grupo Pesquisa")
+pesquisa_concluidaCM <- inner_join(Participantes_andamentoCM, DGP_Pesquisa, by = "Token Grupo Pesquisa")
+pesquisaCM <- rbind(pesquisa_andamentoCM, pesquisa_concluidaCM)
+
+# dados da Saúde Coletiva
+
+Participantes_concluidoSC <- inner_join(DGP_Participantes, concluidoSC, by = c("Nome Participante" = "nome_aluno"))
+Participantes_andamentoSC <- inner_join(DGP_Participantes, andamentoSC, by = c("Nome Participante" = "nome_aluno"))
+pesquisa_andamentoSC <- inner_join(Participantes_andamentoSC, DGP_Pesquisa, by = "Token Grupo Pesquisa")
+pesquisa_concluidaSC <- inner_join(Participantes_andamentoSC, DGP_Pesquisa, by = "Token Grupo Pesquisa")
+pesquisaSC <- rbind(pesquisa_andamentoSC, pesquisa_concluidaSC)
+
+# dados profissional Saúde COletiva
+Participantes_concluidoPSC <- inner_join(DGP_Participantes, concluidoPSC, by = c("Nome Participante" = "nome_aluno"))
+Participantes_andamentoPSC <- inner_join(DGP_Participantes, andamentoPSC, by = c("Nome Participante" = "nome_aluno"))
+pesquisa_andamentoPSC <- inner_join(Participantes_andamentoPSC, DGP_Pesquisa, by = "Token Grupo Pesquisa")
+pesquisa_concluidaPSC <- inner_join(Participantes_andamentoPSC, DGP_Pesquisa, by = "Token Grupo Pesquisa")
+pesquisaPSC <- rbind(pesquisa_andamentoPSC, pesquisa_concluidaPSC)
+
+```
+
+
+
 <!-- Colocar merge com a tabela excel_sheets -->
 
 Para uma futura junção entre as bases do Lattes com as outras foi criada uma tabela de cada uma das bases de dados contendo o nome e o id lattes dos professores
 
 ```{r warning=FALSE}
+# dados de Ciências Médicas
 perfis_tblCM <- data.frame(Reduce(rbind, perfisCM)) #carega lista de perfis
 idsCM <- names(perfisCM) # carrega os ids do lattes de cada professor
 nomes_id_tblCM <- perfis_tblCM%>%mutate(ids = idsCM) %>%
 select(name = nome, id_lates = ids) %>% as_tibble() # junta o nome e id
-```
 
-```{r warning=FALSE}
+# dados de Saúde Coletiva
 perfis_tblSC <- data.frame(Reduce(rbind, perfisSC)) #carega lista de perfis
 idsSC <- names(perfisSC) # carrega os ids do lattes de cada professor
 nomes_id_tblSC <- perfis_tblSC%>%mutate(ids = idsSC) %>%
 select(name = nome, id_lates = ids) %>% as_tibble() # junta o nome e id
-```
 
-```{r warning=FALSE}
+# dados de Profissional de Saúde Coletiva
 perfis_tblPSC <- data.frame(Reduce(rbind, perfisPSC)) #carega lista de perfis
 idsPSC <- names(perfisPSC) # carrega os ids do lattes de cada professor
 nomes_id_tblPSC <- perfis_tblPSC%>%mutate(ids = idsPSC) %>%
 select(name = nome, id_lates = ids) %>% as_tibble() # junta o nome e id
 ```
+
 
 Em seguida, nos dados do DGP, foi aplicado um filtro para trabalharmos somente com os valores mais recentes, isso é, o do ano de 2016 
 ```{r}
@@ -634,7 +662,7 @@ filter(`Ano Censo` == 2016) %>%
 select(-`Ano Censo`)
 
 DGP_Grupos <- DGP_Grupos %>% 
-filter(`Ano Censo` == 2016) %>%
+filter(`Ano Censo` == 2016)%>%
 select(-`Ano Censo`)
 
 DGP_Participantes <- DGP_Participantes %>% 
@@ -642,7 +670,7 @@ filter(`Ano Censo` == 2016) %>%
 select(-`Ano Censo`)
 
 DGP_Parcerias <- DGP_Parcerias %>% 
-filter(`Ano Censo` == 2016) %>%
+filter(`Ano Censo` == 2016)%>%
 select(-`Ano Censo`)
 
 DGP_Pesquisa <- DGP_Pesquisa %>% 
@@ -651,25 +679,59 @@ select(-`Ano Censo`)
 ```
 
 
+
+
 Com o filtro de ano aplicado podemos agora juntar os dados dos grupos de pesquisas, que estão armazenados em DGP_Grupos, com os outros, assim, aplicamos um left join com as produçoes, parcerias e com os participantes.
 
 ```{r}
-DGP_Producao_Grupos <- left_join( DGP_Producao, DGP_Grupos,
+DGP_Producao_Grupos <- inner_join( DGP_Producao, DGP_Grupos,
 by = "Token Grupo Pesquisa")
 
-DGP_Parcerias_Grupos <- left_join( DGP_Parcerias, DGP_Grupos,
+DGP_Parcerias_Grupos <- inner_join( DGP_Parcerias, DGP_Grupos,
 by = "Token Grupo Pesquisa")
 
-DGP_Participantes_Grupos <- left_join( DGP_Participantes, DGP_Grupos,
+DGP_Participantes_Grupos <- inner_join( DGP_Participantes, DGP_Grupos,
 by = "Token Grupo Pesquisa")
+
 ```
 
 
 ## 4. Modelagem.
 
-Nesta fase são selecionadas e aplicadas as técnicas de mineração de dados mais apropriadas, dependendo dos objetivos identificados na primeira fase. Ou seja, foi realizada a escolha, contrução e execução do modelo de modelagem utilizado.
+Nesta fase são selecionadas e aplicadas as técnicas de mineração de dados mais apropriadas, dependendo dos objetivos identificados na primeira fase. Ou seja, foi realizada a escolha, contrução e execução do modelo de modelagem utilizado. Assim, foi aplicado um filtro para trabalharmos somente com os grupos de pesquisa que possuiem professores dos programas de pos graduação de Saude coletiva e Ciencias Medicas.
 
-Assim, foi aplicado um filtro dos para trabalharmos somente com os grupos de pesquisa que possuiem professores dos programas de pos graduação de Saude coletiva e Ciencias Medicas.
+
+Na análise do numero de pesquisas as tabelas geradas na fase de preparação de dados foi utilizada, agrupada de acordo com as linhas de pesquisa
+```{r}
+linhas_pequisa_quantCM <- pesquisaCM %>%
+  group_by(TXT_TITULO_LINHA_PESQUISA)
+
+linhas_pequisa_quantCM <- count(linhas_pequisa_quantCM$TXT_TITULO_LINHA_PESQUISA)
+linhas_pequisa_quantCM <- linhas_pequisa_quantCM[rev(order(linhas_pequisa_quantCM$freq)), ]
+head(linhas_pequisa_quantCM)
+```
+
+```{r}
+linhas_pequisa_quantSC <- pesquisaSC %>%
+  group_by(TXT_TITULO_LINHA_PESQUISA)
+
+linhas_pequisa_quantSC <- count(linhas_pequisa_quantSC$TXT_TITULO_LINHA_PESQUISA)
+linhas_pequisa_quantSC <- linhas_pequisa_quantSC[rev(order(linhas_pequisa_quantSC$freq)), ]
+head(linhas_pequisa_quantSC)
+```
+
+```{r}
+linhas_pequisa_quantPSC <- pesquisaPSC %>%
+  group_by(TXT_TITULO_LINHA_PESQUISA)
+
+linhas_pequisa_quantPSC <- count(linhas_pequisa_quantPSC$TXT_TITULO_LINHA_PESQUISA)
+linhas_pequisa_quantPSC <- linhas_pequisa_quantPSC[rev(order(linhas_pequisa_quantPSC$freq)), ]
+head(linhas_pequisa_quantPSC)
+```
+
+
+
+
 
 Para isso foi armazenado o token de pesquisa de cada professor
 
